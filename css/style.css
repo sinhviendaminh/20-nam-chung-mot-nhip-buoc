@@ -4074,7 +4074,10 @@ html {
   transition: all 0.3s ease;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  position: relative;
+  overflow: hidden;
 }
 
 .form-actions .button-style-two {
@@ -4109,4 +4112,34 @@ html {
   font-size: 16px;
   color: var(--paragraph-color);
   line-height: 1.6;
+}
+
+/* Spinner animation trong button */
+.form-actions .button-style-three i.fa-spinner,
+.form-actions .button-style-three i.fa-spin {
+  animation: wishButtonSpinner 1s linear infinite;
+  display: inline-block;
+}
+
+@keyframes wishButtonSpinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.form-actions .button-style-three:disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-actions .button-style-three.loading {
+  position: relative;
+}
+
+.form-actions .button-style-three.loading i.fa-spinner {
+  animation: wishButtonSpinner 1s linear infinite;
 }

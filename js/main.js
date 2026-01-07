@@ -728,24 +728,19 @@
     enableMasonry();
   });
 
-  // Customize Guest Name from URL Query Parameter
   function customizeGuestName() {
-    // Get query parameters from URL
     const urlParams = new URLSearchParams(window.location.search);
     const guestName = urlParams.get("guest");
 
-    // If name parameter exists, replace the guest name
     if (guestName) {
       const guestElement = $(".invitation-guests p");
       if (guestElement.length) {
-        // Decode URL-encoded characters (e.g., %20 to space, %C4%90 to Đ)
         const decodedName = decodeURIComponent(guestName);
         guestElement.text(decodedName);
       }
     }
   }
 
-  // Run on document ready
   $(document).ready(function () {
     customizeGuestName();
   });
@@ -772,6 +767,11 @@
         wishForm[0].reset();
         wishForm.show();
         wishSuccess.hide();
+        var submitBtn = wishForm.find('button[type="submit"]');
+        submitBtn
+          .prop("disabled", false)
+          .removeClass("loading")
+          .html('Gửi lời chúc <i class="fa-solid fa-paper-plane"></i>');
       }, 300);
     });
 
@@ -784,6 +784,11 @@
           wishForm[0].reset();
           wishForm.show();
           wishSuccess.hide();
+          var submitBtn = wishForm.find('button[type="submit"]');
+          submitBtn
+            .prop("disabled", false)
+            .removeClass("loading")
+            .html('Gửi lời chúc <i class="fa-solid fa-paper-plane"></i>');
         }, 300);
       }
     });
@@ -792,67 +797,94 @@
     wishForm.on("submit", function (e) {
       e.preventDefault();
 
-      // Get form data
-      var formData = {
-        name: $("#wish-name").val().trim(),
-        message: $("#wish-message").val().trim(),
-        url: window.location.href, // Lấy URL hiện tại
-        timestamp: new Date().toLocaleString("vi-VN", {
-          timeZone: "Asia/Ho_Chi_Minh",
-        }),
-      };
+      var name = $("#wish-name").val().trim();
+      var message = $("#wish-message").val().trim();
 
-      // Validate required fields
-      if (!formData.name || !formData.message) {
+      if (!name || !message) {
         alert("Vui lòng điền đầy đủ thông tin bắt buộc!");
         return;
       }
 
-      // Disable submit button
       var submitBtn = wishForm.find('button[type="submit"]');
+      var originalBtnText = submitBtn.html();
+
+      // Thêm spinner vào button
       submitBtn
         .prop("disabled", true)
-        .html('Đang gửi... <i class="fa-solid fa-spinner fa-spin"></i>');
+        .addClass("loading")
+        .html(
+          '<span>Đang lấy thông tin...</span> <i class="fa-solid fa-spinner fa-spin"></i>'
+        );
 
-      // Google Apps Script Web App URL
-      // Thay thế URL này bằng URL của Google Apps Script của bạn
-      var scriptURL =
-        "https://script.google.com/macros/s/AKfycbw5frkbD16oLaedBg5pmzKz7H5OFwWkMXTyJyVBkyWboSDPqhRf_o3iwvCRwzgUOWwmjw/exec";
+      $.getJSON("https://api.ipify.org?format=json")
+        .done(function (ipData) {
+          submitWishForm(ipData.ip || window.location.href);
+        })
+        .fail(function () {
+          submitWishForm(window.location.href);
+        });
 
-      // Send data to Google Sheets via Apps Script
-      $.ajax({
-        url: scriptURL,
-        method: "POST",
-        dataType: "json",
-        data: JSON.stringify(formData),
-        contentType: "application/json",
-        success: function (response) {
-          // Show success message
-          wishForm.hide();
-          wishSuccess.fadeIn(300);
+      function submitWishForm(userIP) {
+        var formData = {
+          name: name,
+          message: message,
+          url: window.location.href,
+          timestamp: new Date().toLocaleString("vi-VN", {
+            timeZone: "Asia/Ho_Chi_Minh",
+          }),
+          ip: userIP,
+        };
 
-          // Reset form
-          wishForm[0].reset();
-          submitBtn
-            .prop("disabled", false)
-            .html('Gửi lời chúc <i class="fa-solid fa-paper-plane"></i>');
+        // Cập nhật text và giữ spinner
+        submitBtn.html(
+          '<span>Đang gửi...</span> <i class="fa-solid fa-spinner fa-spin"></i>'
+        );
 
-          console.log("Wish message saved successfully:", response);
-        },
-        error: function (xhr, status, error) {
-          console.error("Error saving wish message:", error);
-          alert(
-            "Có lỗi xảy ra khi gửi lời chúc. Vui lòng thử lại sau hoặc liên hệ với chúng tôi!"
-          );
-          submitBtn
-            .prop("disabled", false)
-            .html('Gửi lời chúc <i class="fa-solid fa-paper-plane"></i>');
-        },
-      });
+        var scriptURL =
+          "https://script.google.com/macros/s/AKfycbxE7LkZx9Sds8hHCOb0vgvX6FR0FfJahVbTxWlwEyKKlBWo0EHi4isc7NgC0_mAeTk/exec";
+
+        $.ajax({
+          url: scriptURL,
+          method: "POST",
+          data: formData,
+          traditional: true,
+          success: function (response) {
+            var result =
+              typeof response === "string" ? JSON.parse(response) : response;
+
+            if (!result.success) {
+              alert(result.error || "Có lỗi xảy ra. Vui lòng thử lại sau!");
+              submitBtn
+                .prop("disabled", false)
+                .removeClass("loading")
+                .html('Gửi lời chúc <i class="fa-solid fa-paper-plane"></i>');
+              return;
+            }
+
+            wishForm.hide();
+            wishSuccess.fadeIn(300);
+
+            wishForm[0].reset();
+            submitBtn
+              .prop("disabled", false)
+              .removeClass("loading")
+              .html('Gửi lời chúc <i class="fa-solid fa-paper-plane"></i>');
+          },
+          error: function (xhr, status, error) {
+            console.error("Error saving wish message:", error, xhr);
+            alert(
+              "Có lỗi xảy ra khi gửi lời chúc. Vui lòng thử lại sau hoặc liên hệ với chúng tôi!"
+            );
+            submitBtn
+              .prop("disabled", false)
+              .removeClass("loading")
+              .html('Gửi lời chúc <i class="fa-solid fa-paper-plane"></i>');
+          },
+        });
+      }
     });
   }
 
-  // Initialize wish popup on document ready
   $(document).ready(function () {
     initWishPopup();
   });
