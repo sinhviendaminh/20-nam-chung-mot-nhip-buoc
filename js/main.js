@@ -630,6 +630,56 @@
   }
   // End Scroll to a Specific Div
 
+  // Smooth Scroll for Navigation Links
+  function initSmoothScroll() {
+    // Handle navigation menu links
+    $(".navigation a[href^='#']").on("click", function (e) {
+      e.preventDefault();
+      var target = $(this).attr("href");
+      if (target && $(target).length) {
+        var headerHeight = $(".main-header").outerHeight() || 0;
+        var targetOffset = $(target).offset().top - headerHeight;
+
+        $("html, body").animate(
+          {
+            scrollTop: targetOffset,
+          },
+          800,
+          "swing"
+        );
+
+        // Close mobile menu if open
+        $("body").removeClass("mobile-menu-visible");
+      }
+    });
+
+    // Handle mobile menu links (same structure)
+    $(".mobile-menu .navigation a[href^='#']").on("click", function (e) {
+      e.preventDefault();
+      var target = $(this).attr("href");
+      if (target && $(target).length) {
+        var headerHeight = $(".main-header").outerHeight() || 0;
+        var targetOffset = $(target).offset().top - headerHeight;
+
+        $("html, body").animate(
+          {
+            scrollTop: targetOffset,
+          },
+          800,
+          "swing"
+        );
+
+        // Close mobile menu
+        $("body").removeClass("mobile-menu-visible");
+      }
+    });
+  }
+
+  // Initialize smooth scroll on document ready
+  $(document).ready(function () {
+    initSmoothScroll();
+  });
+
   // Nice Select
   $(document).ready(function () {
     $("select:not(.ignore)").niceSelect();
@@ -676,5 +726,134 @@
   $(window).on("load", function () {
     handlePreloader();
     enableMasonry();
+  });
+
+  // Customize Guest Name from URL Query Parameter
+  function customizeGuestName() {
+    // Get query parameters from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const guestName = urlParams.get("guest");
+
+    // If name parameter exists, replace the guest name
+    if (guestName) {
+      const guestElement = $(".invitation-guests p");
+      if (guestElement.length) {
+        // Decode URL-encoded characters (e.g., %20 to space, %C4%90 to Đ)
+        const decodedName = decodeURIComponent(guestName);
+        guestElement.text(decodedName);
+      }
+    }
+  }
+
+  // Run on document ready
+  $(document).ready(function () {
+    customizeGuestName();
+  });
+
+  // Wish Popup Handler
+  function initWishPopup() {
+    var wishPopup = $("#wish-popup");
+    var wishForm = $("#wish-form");
+    var wishSuccess = $("#wish-success");
+
+    // Open popup
+    $(".wish-popup-trigger").on("click", function (e) {
+      e.preventDefault();
+      wishPopup.addClass("popup-visible");
+      $("body").css("overflow", "hidden");
+    });
+
+    // Close popup
+    $(".wish-popup-close, .wish-popup-backdrop").on("click", function () {
+      wishPopup.removeClass("popup-visible");
+      $("body").css("overflow", "");
+      // Reset form after closing
+      setTimeout(function () {
+        wishForm[0].reset();
+        wishForm.show();
+        wishSuccess.hide();
+      }, 300);
+    });
+
+    // Close on ESC key
+    $(document).keydown(function (e) {
+      if (e.keyCode === 27 && wishPopup.hasClass("popup-visible")) {
+        wishPopup.removeClass("popup-visible");
+        $("body").css("overflow", "");
+        setTimeout(function () {
+          wishForm[0].reset();
+          wishForm.show();
+          wishSuccess.hide();
+        }, 300);
+      }
+    });
+
+    // Handle form submission
+    wishForm.on("submit", function (e) {
+      e.preventDefault();
+
+      // Get form data
+      var formData = {
+        name: $("#wish-name").val().trim(),
+        message: $("#wish-message").val().trim(),
+        url: window.location.href, // Lấy URL hiện tại
+        timestamp: new Date().toLocaleString("vi-VN", {
+          timeZone: "Asia/Ho_Chi_Minh",
+        }),
+      };
+
+      // Validate required fields
+      if (!formData.name || !formData.message) {
+        alert("Vui lòng điền đầy đủ thông tin bắt buộc!");
+        return;
+      }
+
+      // Disable submit button
+      var submitBtn = wishForm.find('button[type="submit"]');
+      submitBtn
+        .prop("disabled", true)
+        .html('Đang gửi... <i class="fa-solid fa-spinner fa-spin"></i>');
+
+      // Google Apps Script Web App URL
+      // Thay thế URL này bằng URL của Google Apps Script của bạn
+      var scriptURL =
+        "https://script.google.com/macros/s/AKfycbw5frkbD16oLaedBg5pmzKz7H5OFwWkMXTyJyVBkyWboSDPqhRf_o3iwvCRwzgUOWwmjw/exec";
+
+      // Send data to Google Sheets via Apps Script
+      $.ajax({
+        url: scriptURL,
+        method: "POST",
+        dataType: "json",
+        data: JSON.stringify(formData),
+        contentType: "application/json",
+        success: function (response) {
+          // Show success message
+          wishForm.hide();
+          wishSuccess.fadeIn(300);
+
+          // Reset form
+          wishForm[0].reset();
+          submitBtn
+            .prop("disabled", false)
+            .html('Gửi lời chúc <i class="fa-solid fa-paper-plane"></i>');
+
+          console.log("Wish message saved successfully:", response);
+        },
+        error: function (xhr, status, error) {
+          console.error("Error saving wish message:", error);
+          alert(
+            "Có lỗi xảy ra khi gửi lời chúc. Vui lòng thử lại sau hoặc liên hệ với chúng tôi!"
+          );
+          submitBtn
+            .prop("disabled", false)
+            .html('Gửi lời chúc <i class="fa-solid fa-paper-plane"></i>');
+        },
+      });
+    });
+  }
+
+  // Initialize wish popup on document ready
+  $(document).ready(function () {
+    initWishPopup();
   });
 })(window.jQuery);

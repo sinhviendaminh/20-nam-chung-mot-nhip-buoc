@@ -6,7 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 
-    <title>Open City - HTML 5 Template Preview</title>
+    <title>20 Năm Chung Một Nhịp Bước | Sinh Viên Nhịp Bước Đa Minh</title>
+    <meta name="description" content="20 Năm Chung Một Nhịp Bước | Sinh Viên Nhịp Bước Đa Minh">
+    <meta name="keywords" content="20 Năm Chung Một Nhịp Bước, Sinh Viên Nhịp Bước Đa Minh">
+    <meta name="author" content="Sinh Viên Nhịp Bước Đa Minh">
 
     <!-- Stylesheets -->
     <link href="css/bootstrap.css" rel="stylesheet">
@@ -28,8 +31,8 @@
     <!-- End Stylesheets -->
 
     <!-- Fav Icon -->
-    <link rel="shortcut icon" href="images/icons/favicon.png" type="image/x-icon">
-    <link rel="icon" href="images/icons/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
     <!-- End Fav Icon -->
 
     <!-- Google Fonts -->
@@ -40,6 +43,7 @@
         href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rowdies:wght@300;400;700&display=swap"
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Paytone+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
     <!-- End Google Fonts -->
 
 </head>
@@ -97,6 +101,46 @@
 
     <!--End Search Popup-->
 
+    <!-- Wish Message Popup -->
+    <div id="wish-popup" class="wish-popup">
+        <div class="wish-popup-backdrop"></div>
+        <div class="wish-popup-inner">
+            <div class="wish-popup-content">
+                <div class="wish-popup-header">
+                    <h3>Gửi lời chúc đến nhóm</h3>
+                    <button class="wish-popup-close" type="button">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </div>
+                <div class="wish-popup-body">
+                    <form id="wish-form" class="wish-form">
+                        <div class="form-group">
+                            <label for="wish-name">Tên của bạn <span>*</span></label>
+                            <input type="text" id="wish-name" name="name" class="form-control"
+                                placeholder="Nhập tên của bạn" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="wish-message">Lời chúc <span>*</span></label>
+                            <textarea id="wish-message" name="message" class="form-control" rows="5"
+                                placeholder="Nhập lời chúc của bạn..." required></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="button-style-three">Gửi lời chúc <i
+                                    class="fa-solid fa-paper-plane"></i></button>
+                        </div>
+                    </form>
+                    <div id="wish-success" class="wish-success-message" style="display: none;">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <h4>Cảm ơn bạn!</h4>
+                        <p>Lời chúc của bạn đã được gửi thành công. Chúng tôi rất trân trọng tình cảm của bạn!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Wish Message Popup -->
+
     <!-- Main Header -->
     <header class="main-header">
 
@@ -107,27 +151,27 @@
                     <ul class="header-top-info">
                         <li class="header-top-single-info">
                             <i class="flaticon-newspaper"></i>
-                            <strong>Breaking News</strong>
+                            <strong>Địa chỉ</strong>
                             <span>:</span>
-                            <p>Gunman deliberately sought black victims - mayor</p>
+                            <p>GIÁO XỨ THÁNH ĐA MINH BA CHUÔNG - 190 LÊ VĂN SỸ PHƯỜNG PHÚ NHUẬN TP.HCM</p>
                         </li>
                         <li class="header-top-single-info">
                             <i class="flaticon-email"></i>
-                            <p><a href="">support@yourmail.com</a></p>
+                            <p><a href="https://www.facebook.com/SVDMfanpage">Facebook: Sinh Viên Đa Minh</a></p>
                         </li>
-                        <li class="header-top-single-info">
+                        <!-- <li class="header-top-single-info">
                             <i class="flaticon-incoming-call"></i>
                             <strong>Call On</strong>
                             <span>:</span>
                             <p>(+123) 456 777 888 999</p>
-                        </li>
+                        </li> -->
                     </ul>
-                    <div class="open-schedule-time">
+                    <!-- <div class="open-schedule-time">
                         <i class="flaticon-history"></i>
                         <strong>Open Today</strong>
                         <span>:</span>
                         <p>9AM - 5AM</p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -138,7 +182,7 @@
             <div class="container-fluid">
                 <div class="header-outer-box">
                     <div class="logo-box">
-                        <figure class="logo"><a href="index.html"><img src="images/logo.svg" alt=""></a>
+                        <figure class="logo"><a href="index.html"><img src="assets/logo_h64.jpg" alt=""></a>
                         </figure>
                     </div>
                     <div class="menu-area">
@@ -150,22 +194,11 @@
                         <nav class="main-menu navbar-expand-md navbar-light">
                             <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                                 <ul class="navigation clearfix">
-                                    <li class="current dropdown"><a href="index.html">Home</a>
-
-                                    </li>
-                                    <li class="dropdown"><a href="index.html">Pages</a>
-
-                                    </li>
-                                    <li class="dropdown"><a href="index.html">Departments</a>
-
-                                    </li>
-                                    <li class="dropdown"><a href="index.html">Events</a>
-
-                                    </li>
-                                    <li class="dropdown"><a href="index.html">City News</a>
-
-                                    </li>
-                                    <li><a href="OpenCity/contact.html">Contact</a></li>
+                                    <li class="current"><a href="#home">Trang chủ</a></li>
+                                    <li><a href="#lich-su">Lịch sử</a></li>
+                                    <li><a href="#thiep-moi">Thiệp mời</a></li>
+                                    <li><a href="#cham-ngon">Châm ngôn</a></li>
+                                    <li><a href="#linh-huong">Linh hướng</a></li>
                                 </ul>
                             </div>
                         </nav>
@@ -188,7 +221,7 @@
             <div class="container">
                 <div class="header-outer-box">
                     <div class="logo-box">
-                        <figure class="logo"><a href="index.html"><img src="images/logo.svg" alt=""></a>
+                        <figure class="logo"><a href="index.html"><img src="assets/logo_h64.jpg" alt=""></a>
                         </figure>
                     </div>
                     <div class="menu-area">
@@ -207,24 +240,24 @@
             <div class="close-btn">X</div>
 
             <nav class="menu-box">
-                <div class="nav-logo"><a href="index.html"><img src="images/mobile-logo.svg" alt="" title=""></a></div>
-                <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+                <div class="nav-logo"><a href="index.html"><img src="assets/logo_h64.jpg" alt="" title=""></a></div>
+                <div class="menu-outer">
                 </div>
-                <div class="contact-info">
+                <!-- <div class="contact-info">
                     <h4>Contact Info</h4>
                     <ul>
                         <li>Chicago 12, Melborne City, USA</li>
                         <li><a href="tel:+8801682648101">+88 01682648101</a></li>
                         <li><a href="mailto:info@example.com">info@example.com</a></li>
                     </ul>
-                </div>
-                <ul class="social-links centred">
+                </div> -->
+                <!-- <ul class="social-links centred">
                     <li><a href="index.html"><span class="fab fa-twitter"></span></a></li>
                     <li><a href="index.html"><span class="fab fa-facebook-square"></span></a></li>
                     <li><a href="index.html"><span class="fab fa-pinterest-p"></span></a></li>
                     <li><a href="index.html"><span class="fab fa-instagram"></span></a></li>
                     <li><a href="index.html"><span class="fab fa-youtube"></span></a></li>
-                </ul>
+                </ul> -->
             </nav>
         </div>
         <!-- End Mobile Menu -->
@@ -233,9 +266,9 @@
     <!-- End Main Header -->
 
     <!-- Main Slider -->
-    <section class="main-slider">
+    <section id="home" class="main-slider">
         <div class="main-slider-carousel owl-carousel owl-theme">
-            <div class="slide" style="background-image:url(images/banner/banner-1.jpg)">
+            <div class="slide" style="background-image:url(assets/images/banner/banner-1.jpeg)">
                 <div class="shape" style="background-image: url(images/banner/shape.svg);"></div>
                 <div class="container-fluid slider-container">
                     <div class="row">
@@ -243,11 +276,16 @@
                             <div class="content-box">
                                 <div class="bg-layer" style="background-image: url(images/banner/pattern-1.png)"></div>
                                 <h1>20 NĂM CHUNG MỘT NHỊP BƯỚC</h1>
-                                <p class="text">Hai mươi năm - một nhịp bước không ngơi
+                                <h3 class="text">Hai mươi năm - một nhịp bước không ngơi
                                     <br>Dấn thân gieo ánh sáng giữa cuộc đời
-                                </p>
-                                <div class="link-button"><a href="OpenCity/contact.html" class="button-style-three">Pay
-                                        Your Tex <i class="fa-solid fa-arrow-right"></i></a></div>
+                                </h3>
+                                <h3 class="text">
+                                    Hai mươi năm không chỉ là một cột mốc thời gian,
+                                    <br>mà là hành trình của những con người đã gặp gỡ nhau,
+                                    <br>cùng bước đi, cùng cầu nguyện, cùng dấn thân vì một lý tưởng chung.
+                                </h3>
+                                <div class="link-button"><a href="#" class="button-style-three wish-popup-trigger">Gửi
+                                        lời chúc đến nhóm <i class="fa-solid fa-arrow-right"></i></a></div>
                             </div>
                         </div>
                         <div class="col-xl-7 col-lg-6 col-md-12 column">
@@ -263,11 +301,224 @@
     </section>
     <!-- End Main Slider -->
 
+    <section id="lich-su" class="history-section sec-padding-150">
+        <div class="bg-layer" style="background-image: url(images/resource/campaign-banner.png);"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-lg-6 col-md-12">
+                    <div class="wow slideInLeft animated" data-wow-delay="200ms" data-wow-duration="1500ms">
+                        <div class="history-banner-image mb_50 mt_45">
+                            <figure>
+                                <img src="assets/images/resource/truyen-thong-1.jpeg" alt="">
+                            </figure>
+                        </div>
+                        <div class="history-banner-image">
+                            <figure>
+                                <img src="assets/images/resource/truyen-thong-2.jpeg" alt="">
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-12">
+                    <div class="wow slideInUp animated" data-wow-delay="100ms" data-wow-duration="2000ms">
+                        <div class="history-image">
+                            <figure>
+                                <img src="assets/images/resource/khan-nhom.jpeg" alt="">
+                            </figure>
+                        </div>
+                        <div class="est-date centred">2006 - 2026</div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-lg-6 col-md-12">
+                    <div class="wow slideInRight animated" data-wow-delay="300ms" data-wow-duration="1500ms">
+                        <div class="history-banner-image mb_50 mt_45">
+                            <figure>
+                                <img src="assets/images/resource/truyen-thong-3.jpeg" alt="">
+                            </figure>
+                        </div>
+                        <div class="history-block-one">
+                            <h3 class="year">2026</h3>
+                            <!-- <h4 class="title">Housing & land department</h4> -->
+                            <p>Hai mươi năm là hành trình của nhiều thế hệ.
+                                Có những người đến rồi rời đi, có những giai đoạn không còn lưu lại hình ảnh, nhưng nhịp
+                                bước thì chưa từng ngơi nghỉ.
+                                Bởi có những điều không cần được ghi lại bằng ảnh,mà được khắc sâu trong ký ức.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="about-section-four">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-6 col-md-12">
+                    <div class="about-content-four">
+                        <h3>I. KHỞI SINH </h3>
+                        <p>Có một thời, Nhịp Bước Đa Minh bắt đầu rất đơn giản –chỉ là vài chương trình nhỏ, vài buổi
+                            gặp gỡ khiêm tốn và một nhóm người trẻ chưa có nhiều điều trong tay ngoài thao thức và lòng
+                            nhiệt thành.
+                            .</p>
+                        <p>
+                            Nhưng chính từ những điều nhỏ bé ấy, một nhịp bước đã được hình thành và lặng lẽ lớn lên qua
+                            năm tháng
+                        </p>
+                    </div>
+                </div>
+                <div class="col-xl-6 col-md-12">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <figure class="image mb_30">
+                                <img src="assets/images/resource/lich-su-1.jpeg" alt="">
+                            </figure>
+                        </div>
+                        <div class="col-xl-6 col-md-6 col-sm-12">
+                            <figure class="image mb_30">
+                                <img src="assets/images/resource/lich-su-2.jpeg" alt="">
+                            </figure>
+                        </div>
+                        <div class="col-xl-6 col-md-6 col-sm-12">
+                            <figure class="image mb_30">
+                                <img src="assets/images/resource/lich-su-3.jpeg" alt="">
+                            </figure>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="about-content-four">
+                        <h3>II. TIẾP NỐI - NHỮNG NHỊP BƯỚC LỚN DẦN </h3>
+
+                    </div>
+                    <div class="row">
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                            <div class="team-block-one mb_30">
+                                <div class="team-image">
+                                    <figure>
+                                        <img src="assets/images/resource/lich-su-4.jpeg" alt="">
+                                    </figure>
+
+
+                                </div>
+                                <div class="team-info">
+                                    <span>Theo năm tháng, Các chương trình dần được hình thành và phát triển, sinh hoạt
+                                        ngày một phong phú hơn
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                            <div class="team-block-one mb_30">
+                                <div class="team-image">
+                                    <figure>
+                                        <img src="assets/images/resource/lich-su-5.jpeg" alt="">
+                                    </figure>
+                                </div>
+                                <div class="team-info">
+                                    <span>Và những người trẻ mới đến mang theo sự năng động, sáng tạo và nhiệt huyết của
+                                        thời đại mình.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
+                            <div class="team-block-one mb_30">
+                                <div class="team-image">
+                                    <figure>
+                                        <img src="assets/images/resource/lich-su-6.jpeg" alt="">
+                                    </figure>
+                                </div>
+                                <div class="team-info">
+                                    <span>Mỗi thế hệ bước vào không chỉ để tiếp nhận,
+                                        mà để làm mới hành trình chung.
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xl-12">
+                <div class="about-content-four">
+                    <h3>III. HÔM NAY MỘT NHỊP BƯỚC CHUNG ĐANG ĐƯỢC VIẾT TIẾP </h3>
+                    <p>Hai mươi năm sau, Nhịp Bước Đa Minh không còn là câu chuyện của riêng ai, mà là một hành trình
+                        chung được tiếp nối bởi những người trẻ hôm nay. <br>
+                        Khép lại một chặng đường để mở ra chặng mới, Nhịp Bước Đa Minh vẫn tiếp tục lên đường, mang theo
+                        đức tin, tình bạn và khát vọng, để ánh sáng được lan tỏa qua từng nhịp bước của người trẻ.
+
+                    </p>
+                </div>
+                <div class="row">
+                    <div class="col-xl-6 col-lg-12">
+                        <div class="team-block-one style-two mb_30">
+                            <div class="team-image">
+                                <figure>
+                                    <img src="assets/images/resource/lich-su-7.jpeg" alt="">
+                                </figure>
+
+                                <div class="team-info">
+                                    <h3>Nhóm Sinh Viên Đa Minh</h3>
+                                    <span>Xin chân thành cảm ơn vì đã hiện diện và đồng hành cùng Nhịp Bước Đa Minh
+                                        trong suốt hành trình hai mươi năm. </span>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-6 col-lg-12">
+                        <div class="row">
+                            <div class="col-xl-6 col-lg-6 col-md-12">
+                                <div class="team-block-one style-three mb_30">
+                                    <div class="team-image">
+                                        <figure>
+                                            <img src="assets/images/resource/lich-su-8.jpeg" alt="">
+                                        </figure>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-12">
+                                <div class="team-block-one style-three mb_30">
+                                    <div class="team-image">
+                                        <figure>
+                                            <img src="assets/images/resource/lich-su-9.jpeg" alt="">
+                                        </figure>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-12">
+                                <div class="team-block-one style-three mb_30">
+                                    <div class="team-image">
+                                        <figure>
+                                            <img src="assets/images/resource/lich-su-10.jpeg" alt=""></img>
+                                        </figure>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-12">
+                                <div class="team-block-one style-three mb_30">
+                                    <div class="team-image">
+                                        <figure>
+                                            <img src="assets/images/resource/lich-su-11.jpeg" alt=""></img>
+                                        </figure>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Feature Section -->
-    <section class="feature-section sec-padding-150">
+    <section id="thiep-moi" class="feature-section sec-padding-50">
         <div class="container">
             <div class="section-title centred mb_60">
-                <span>Government activity</span>
                 <h1>Thiệp mời</h1>
                 <p>Một hành trình đấy ý nghĩa với những kỷ niệm đáng nhớ và những <br>thành tựu đáng tự hào trong suốt
                     20 năm qua.</p>
@@ -276,23 +527,48 @@
             <div class="row">
                 <div class="col-12">
                     <div class="feature-banner mb_30" style="background-image: url(images/feature/feature-banner.jpg);">
-                        <div class="quote"><i class="flaticon-quote-1"></i></div>
+                        <!-- <div class="quote"><i class="flaticon-quote-1"></i></div> -->
                         <div class="shape-quote"><i class="flaticon-quote-1"></i></div>
-                        <h3>Nhân dịp kỷ niệm 20 năm hình thành và phát triển.<br>
-                            Nhóm Sinh Viên Nhịp Bước Đa Minh trân trọng kính mời:<br>
-                            Quý Cha, quý ân nhân, quý anh chị cựu thành viên<br>
-                            cùng tất cả các bạn đã, đang và sẽ đồng hành với Nhóm<br>
-                            Đến tham dự Lễ Kỷ Niệm Sinh Nhật 20 Năm,<br>
-                            để cùng nhau tạ ơn Thiên Chúa,<br>
-                            gặp gỡ - sẻ chia - nối kết các thế hệ.<br>
-                            và tiếp tục viết nên những nhịp bước mới trong yêu<br>
-                            thương và dấn thân.<br>
-                            Sự hiện diện của quý vị là niềm vui lớn lao<br>
-                            và là nguồn khích lệ quý giá<br>
-                            cho hành trình tiếp nối của Nhịp Bước Đa Minh.</h3>
-                        <div class="signature"><img src="images/feature/signature.png" alt=""></div>
-                        <div class="author-name">Nhóm Sinh Viên Nhịp Bước Đa Minh</div>
-                        <span>Kỷ niệm 20 năm</span>
+                        <div class="invitation-content">
+                            <p class="invitation-intro">Nhân dịp kỷ niệm 20 năm hình thành và phát triển của<br>
+                                Nhóm Sinh Viên Nhịp Bước Đa Minh<br> <br> Trân trọng kính mời:</p>
+                            <div class="invitation-guests">
+                                <p>Quý Cha, quý ân nhân, quý anh chị cựu thành viên
+                                    cùng tất cả các bạn đã, đang và sẽ đồng hành với Nhóm</p>
+                            </div>
+                            <p class="invitation-message">Đến tham dự Lễ Kỷ Niệm Sinh Nhật 20 năm
+                                để cùng nhau tạ ơn Thiên Chúa,
+                                gặp gỡ, sẻ chia, nối kết các thế hệ
+                                và tiếp tục viết nên những nhịp bước mới trong yêu
+                                thương và dấn thân.<br>
+                                Sự hiện diện của quý vị là niềm vui lớn lao
+                                và là nguồn khích lệ quý giá
+                                cho hành trình tiếp nối của Nhịp Bước Đa Minh.</p>
+                            <div class="invitation-details">
+                                <div class="detail-item">
+                                    <i class="flaticon-calendar"></i>
+                                    <div class="detail-content">
+                                        <strong>Thời gian:</strong>
+                                        <span>Thứ bảy, ngày 31 tháng 1 năm 2026</span>
+                                    </div>
+                                </div>
+                                <div class="detail-item">
+                                    <i class="flaticon-location"></i>
+                                    <div class="detail-content">
+                                        <strong>Địa điểm:</strong>
+                                        <span>GIÁO XỨ THÁNH ĐA MINH BA CHUÔNG<br>190 Lê Văn Sỹ, Phường Phú Nhuận,
+                                            TP.HCM</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="invitation-footer">
+                            <div class="signature-wrapper">
+                                <div class="signature"><img src="images/feature/signature.png" alt=""></div>
+                                <div class="author-name">Nhóm Sinh Viên Nhịp Bước Đa Minh</div>
+                                <span>Kỷ niệm 20 năm</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -300,8 +576,246 @@
     </section>
     <!-- End Feature Section -->
 
+    <section id="cham-ngon" class="services-section-two sec-padding-150">
+        <div class="container">
+            <div class="section-title centred mb_60">
+                <h1>Châm ngôn và khẩu hiệu</h1>
+                <p>“Chính anh em là ánh sáng cho trần gian” (Mt 5, 13)</p>
+                <div class="title-shape"><img src="images/resource/title-shape.png" alt=""></div>
+            </div>
+            <div class="row tabs-box">
+                <div class="col-xl-4 col-lg-12">
+                    <div class="tab-buttons">
+                        <div class="tab-btn" data-tab="#tab-1"><i class="flaticon-incognito-1"></i> Năng động</div>
+                        <div class="tab-btn active-btn" data-tab="#tab-2"><i class="flaticon-resources"></i>Liên đới
+                        </div>
+                        <div class="tab-btn" data-tab="#tab-3"><i class="flaticon-hut"></i>Dấn thân</div>
+                    </div>
+                </div>
+                <div class="col-xl-8 col-lg-12">
+                    <div class="tabs-content">
+                        <div class="tab" id="tab-1">
+                            <div class="tab-box">
+                                <div class="tab-image">
+                                    <figure>
+                                        <img src="assets/images/resource/nang-dong.jpeg" alt="">
+                                    </figure>
+                                </div>
+                                <div class="tab-content">
+                                    <h3>Năng động</h3>
+                                    <p class="bold-text">"Năng động không chỉ là hoạt động bề ngoài, mà là sự chủ động
+                                        nuôi dưỡng đời sống nội tâm, biết tìm kiếm ý nghĩa, biết trăn trở trước thực
+                                        trạng xã hội
+                                        và sẵn sàng lớn lên mỗi ngày trong trách nhiệm."</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab active-tab" id="tab-2">
+                            <div class="tab-box">
+                                <div class="tab-image">
+                                    <figure>
+                                        <img src="assets/images/resource/lien-doi.jpeg" alt=""></img>
+                                    </figure>
+                                </div>
+                                <div class="tab-content">
+                                    <h3>Liên đới</h3>
+                                    <p class="bold-text">"Liên đới là biết bước đi cùng nhau, biết lắng nghe, cảm thông
+                                        và chia sẻ. Đó là tinh thần xây dựng tình bạn chân thành trong nhóm, là sự mở
+                                        lòng với những người yếu thế, và là chọn không sống cho riêng mình, nhưng gắn
+                                        kết đời sống cá nhân với cộng đồng và xã hội."</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab" id="tab-3">
+                            <div class="tab-box">
+                                <div class="tab-image">
+                                    <figure>
+                                        <img src="assets/images/resource/dan-than.jpeg" alt=""></img>
+                                    </figure>
+                                </div>
+                                <div class="tab-content">
+                                    <h3>Dấn thân</h3>
+                                    <p class="bold-text">"Biến lý tưởng và đức tin thành hành động cụ thể
+                                        Đem những gì đã học hỏi và cầu nguyện đi vào đời sống thực tế:
+                                        phục vụ, yêu thương và làm chứng cho Tin Mừng giữa môi trường học tập và xã hội
+                                        hôm nay."</p>
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Linh Huong Section -->
+    <section id="linh-huong" class="about-section-four sec-padding-150">
+        <div class="container">
+            <div class="section-title centred mb_60">
+
+                <h1>Linh hướng & Đồng hành</h1>
+                <p>Những vị đã và đang nâng đỡ, linh hướng và đồng hành cùng Nhịp Bước Đa Minh qua các thế hệ.</p>
+                <div class="title-shape"><img src="images/resource/title-shape.png" alt=""></div>
+            </div>
+            <div class="row">
+                <!-- Left Column -->
+                <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+
+
+                    <!-- Main Portrait Image -->
+                    <div class="main-portrait-image mb_30">
+                        <figure class="image" style="border-radius: 10px; overflow: hidden;">
+                            <img src="assets/images/resource/author-image.png" alt=""
+                                style="width: 100%; height: auto; display: block;">
+                        </figure>
+                    </div>
+                    <div class="portrait-caption mb_40">
+                        <h5 style="font-weight: 700; margin-bottom: 5px; color: var(--title-color);">CHA LINH HƯỚNG NHÓM
+                        </h5>
+                        <p style="color: var(--paragraph-color);">LM. Giuse Trương Công Khiêm</p>
+                    </div>
+
+                    <!-- Three Small Images with Text -->
+                    <div class="companion-items-wrapper">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-6 col-md-6 col-sm-6 mb_20">
+                                <div class="companion-item">
+                                    <div class="companion-image">
+                                        <figure>
+                                            <img src="assets/images/resource/author-image.png" alt="">
+                                        </figure>
+                                    </div>
+                                    <div class="companion-content">
+                                        <h6>QUÝ THẦY ĐỒNG HÀNH</h6>
+                                        <p>LM. Giuse Trương Công Khiêm</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-6 col-md-6 col-sm-6 mb_20">
+                                <div class="companion-item">
+                                    <div class="companion-image">
+                                        <figure>
+                                            <img src="assets/images/resource/author-image.png" alt="">
+                                        </figure>
+                                    </div>
+                                    <div class="companion-content">
+                                        <h6>QUÝ SƠ ĐỒNG HÀNH</h6>
+                                        <p>LM. Giuse Trương Công Khiêm</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-12 col-lg-6 col-md-6 col-sm-6 mb_20">
+                                <div class="companion-item">
+                                    <div class="companion-image">
+                                        <figure>
+                                            <img src="assets/images/resource/author-image.png" alt="">
+                                        </figure>
+                                    </div>
+                                    <div class="companion-content">
+                                        <h6>QUÝ SƠ ĐỒNG HÀNH</h6>
+                                        <p>LM. Giuse Trương Công Khiêm</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Circular Portraits Grid -->
+                <div class="col-xl-6 col-lg-6 col-md-6 col-12">
+                    <div class="row">
+                        <!-- Row 1 -->
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb_30">
+                            <div class="circular-portrait-block text-center">
+                                <div class="portrait-image"
+                                    style="width: 200px; height: 200px; margin: 0 auto 15px; border-radius: 50%; overflow: hidden; border: 3px solid var(--primary-color);">
+                                    <img src="assets/images/resource/author-image.png" alt=""
+                                        style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                <div class="content-box">
+                                    <h6>NGUYÊN LINH HƯỚNG NHÓM</h6>
+                                    <p>Cha Giuse Đỗ Trung Thành OP</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb_30">
+                            <div class="circular-portrait-block text-center">
+                                <div class="portrait-image"
+                                    style="width: 200px; height: 200px; margin: 0 auto 15px; border-radius: 50%; overflow: hidden; border: 3px solid var(--primary-color);">
+                                    <img src="assets/images/resource/author-image.png" alt=""
+                                        style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                <div class="content-box">
+                                    <h6>NGUYÊN LINH HƯỚNG NHÓM</h6>
+                                    <p>Cha Giuse Trần Văn Việt OP</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Row 2 -->
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb_30">
+                            <div class="circular-portrait-block text-center">
+                                <div class="portrait-image"
+                                    style="width: 200px; height: 200px; margin: 0 auto 15px; border-radius: 50%; overflow: hidden; border: 3px solid var(--primary-color);">
+                                    <img src="assets/images/resource/author-image.png" alt=""
+                                        style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                <div class="content-box">
+                                    <h6>NGUYÊN LINH HƯỚNG NHÓM</h6>
+                                    <p>Giuse Tôn Khánh Duy OP</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb_30">
+                            <div class="circular-portrait-block text-center">
+                                <div class="portrait-image"
+                                    style="width: 200px; height: 200px; margin: 0 auto 15px; border-radius: 50%; overflow: hidden; border: 3px solid var(--primary-color);">
+                                    <img src="assets/images/resource/author-image.png" alt=""
+                                        style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                <div class="content-box">
+                                    <h6>NGUYÊN LINH HƯỚNG NHÓM</h6>
+                                    <p>Vinh Sơn Nguyễn Phước Thiện OP</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Row 3 -->
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb_30">
+                            <div class="circular-portrait-block text-center">
+                                <div class="portrait-image"
+                                    style="width: 200px; height: 200px; margin: 0 auto 15px; border-radius: 50%; overflow: hidden; border: 3px solid var(--primary-color);">
+                                    <img src="assets/images/resource/author-image.png" alt=""
+                                        style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                <div class="content-box">
+                                    <h6>THẦY NGUYÊN ĐẶC TRÁCH</h6>
+                                    <p>Phêrô Nguyễn Phi Khanh OP</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb_30">
+                            <div class="circular-portrait-block text-center">
+                                <div class="portrait-image"
+                                    style="width: 200px; height: 200px; margin: 0 auto 15px; border-radius: 50%; overflow: hidden; border: 3px solid var(--primary-color);">
+                                    <img src="assets/images/resource/author-image.png" alt=""
+                                        style="width: 100%; height: 100%; object-fit: cover;">
+                                </div>
+                                <div class="content-box">
+                                    <h6>THẦY NGUYÊN ĐẶC TRÁCH</h6>
+                                    <p>Nicola Lê Quang Thắng OP</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Linh Huong Section -->
+
     <!-- Services Section One -->
-    <section class="services-section-one" style="background-image: url(images/services/services-bg-1.jpg);">
+    <!-- <section class="services-section-one" style="background-image: url(images/services/services-bg-1.jpg);">
         <div class="container">
             <div class="row">
                 <div class="col-xl-6 col-lg-6 col-md-12">
@@ -345,141 +859,15 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- End Services Section Two -->
 
     <!-- Services Section Two -->
-    <section class="services-section-two sec-padding-150">
-        <div class="container">
-            <div class="section-title centred mb_60">
-                <span>Join with us</span>
-                <h1>Explore Online Services</h1>
-                <p>Sed gravida nisl a porta tincidunt. Integer aliquam nisi sit amet magna <br>suscipit, fermentum
-                    mattis erat rutrum.</p>
-                <div class="title-shape"><img src="images/resource/title-shape.png" alt=""></div>
-            </div>
-            <div class="row tabs-box">
-                <div class="col-xl-4 col-lg-12">
-                    <div class="tab-buttons">
-                        <div class="tab-btn" data-tab="#tab-1"><i class="flaticon-incognito-1"></i> Miscellaneous</div>
-                        <div class="tab-btn active-btn" data-tab="#tab-2"><i class="flaticon-resources"></i>Taxes and
-                            bills</div>
-                        <div class="tab-btn" data-tab="#tab-3"><i class="flaticon-hut"></i>Property tax related</div>
-                        <div class="tab-btn" data-tab="#tab-4"><i class="flaticon-notebook-2"></i>Certificates</div>
-                        <div class="tab-btn" data-tab="#tab-5"><i class="flaticon-animal"></i>Building sanctions</div>
-                    </div>
-                </div>
-                <div class="col-xl-8 col-lg-12">
-                    <div class="tabs-content">
-                        <div class="tab" id="tab-1">
-                            <div class="tab-box">
-                                <div class="tab-image">
-                                    <figure>
-                                        <a href="OpenCity/service-details.html"><img
-                                                src="images/services/tab-service-1.jpg" alt=""></a>
-                                    </figure>
-                                </div>
-                                <div class="tab-content">
-                                    <h3>Miscellaneous</h3>
-                                    <p class="bold-text">Nunc hendrerit vitae urna eu vestibulum. Duis tempus interdum
-                                    </p>
-                                    <p class="simple-text">Nunc hendrerit vitae urna eu vestibulum. Duis tempus interdum
-                                        iaculis. Pellentesque varius vestibulum dui at pellentesque. In id feugiat
-                                        magna. Nunc nibh enim, hendrerit in augue id, dignissim sollicitudin ante.</p>
-                                    <div class="link-btn"><a href="OpenCity/services.html"><i
-                                                class="fa-sharp fa-solid fa-arrow-right"></i></a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab active-tab" id="tab-2">
-                            <div class="tab-box">
-                                <div class="tab-image">
-                                    <figure>
-                                        <a href="OpenCity/service-details.html"><img
-                                                src="images/services/tab-service-2.jpg" alt=""></a>
-                                    </figure>
-                                </div>
-                                <div class="tab-content">
-                                    <h3>Taxes and bills</h3>
-                                    <p class="bold-text">Nunc hendrerit vitae urna eu vestibulum. Duis tempus interdum
-                                    </p>
-                                    <p class="simple-text">Nunc hendrerit vitae urna eu vestibulum. Duis tempus interdum
-                                        iaculis. Pellentesque varius vestibulum dui at pellentesque. In id feugiat
-                                        magna. Nunc nibh enim, hendrerit in augue id, dignissim sollicitudin ante.</p>
-                                    <div class="link-btn"><a href="OpenCity/services.html"><i
-                                                class="fa-sharp fa-solid fa-arrow-right"></i></a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab" id="tab-3">
-                            <div class="tab-box">
-                                <div class="tab-image">
-                                    <figure>
-                                        <a href="OpenCity/service-details.html"><img
-                                                src="images/services/tab-service-3.jpg" alt=""></a>
-                                    </figure>
-                                </div>
-                                <div class="tab-content">
-                                    <h3>Property tax related</h3>
-                                    <p class="bold-text">Nunc hendrerit vitae urna eu vestibulum. Duis tempus interdum
-                                    </p>
-                                    <p class="simple-text">Nunc hendrerit vitae urna eu vestibulum. Duis tempus interdum
-                                        iaculis. Pellentesque varius vestibulum dui at pellentesque. In id feugiat
-                                        magna. Nunc nibh enim, hendrerit in augue id, dignissim sollicitudin ante.</p>
-                                    <div class="link-btn"><a href="OpenCity/services.html"><i
-                                                class="fa-sharp fa-solid fa-arrow-right"></i></a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab" id="tab-4">
-                            <div class="tab-box">
-                                <div class="tab-image">
-                                    <figure>
-                                        <a href="OpenCity/service-details.html"><img
-                                                src="images/services/tab-service-4.jpg" alt=""></a>
-                                    </figure>
-                                </div>
-                                <div class="tab-content">
-                                    <h3>Certificates</h3>
-                                    <p class="bold-text">Nunc hendrerit vitae urna eu vestibulum. Duis tempus interdum
-                                    </p>
-                                    <p class="simple-text">Nunc hendrerit vitae urna eu vestibulum. Duis tempus interdum
-                                        iaculis. Pellentesque varius vestibulum dui at pellentesque. In id feugiat
-                                        magna. Nunc nibh enim, hendrerit in augue id, dignissim sollicitudin ante.</p>
-                                    <div class="link-btn"><a href="OpenCity/services.html"><i
-                                                class="fa-sharp fa-solid fa-arrow-right"></i></a></div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab" id="tab-5">
-                            <div class="tab-box">
-                                <div class="tab-image">
-                                    <figure>
-                                        <a href="OpenCity/service-details.html"><img
-                                                src="images/services/tab-service-5.jpg" alt=""></a>
-                                    </figure>
-                                </div>
-                                <div class="tab-content">
-                                    <h3>Building sanctions</h3>
-                                    <p class="bold-text">Nunc hendrerit vitae urna eu vestibulum. Duis tempus interdum
-                                    </p>
-                                    <p class="simple-text">Nunc hendrerit vitae urna eu vestibulum. Duis tempus interdum
-                                        iaculis. Pellentesque varius vestibulum dui at pellentesque. In id feugiat
-                                        magna. Nunc nibh enim, hendrerit in augue id, dignissim sollicitudin ante.</p>
-                                    <div class="link-btn"><a href="OpenCity/services.html"><i
-                                                class="fa-sharp fa-solid fa-arrow-right"></i></a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+
     <!-- End Services Section Two-->
 
     <!-- Event Section -->
-    <section class="event-section" style="background-image: url(images/event/pattern.png);">
+    <!-- <section class="event-section" style="background-image: url(images/event/pattern.png);">
         <div class="event-left">
             <div class="event-inner-left">
                 <div class="section-title style-two mb_40">
@@ -543,11 +931,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- End Event Section -->
 
     <!-- Faq Section -->
-    <section class="faq-section sec-padding-150">
+    <!-- <section class="faq-section sec-padding-150">
         <div class="container">
             <div class="section-title centred mb_60">
                 <span>Complaints</span>
@@ -609,11 +997,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- End Faq Section -->
 
     <!-- Team Section -->
-    <section class="team-section sec-padding-120">
+    <!-- <section class="team-section sec-padding-120">
         <div class="container">
             <div class="section-title centred mb_60">
                 <span>Our Council</span>
@@ -691,11 +1079,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- End Teean Section -->
 
     <!-- Testimonials Section -->
-    <section class="testimonials-section sec-padding-200"
+    <!-- <section class="testimonials-section sec-padding-200"
         style="background-image: url(images/resource/testimonials-bg.jpg);">
         <div class="twitter-logo"><i class="fa-brands fa-twitter"></i></div>
         <div class="container">
@@ -720,11 +1108,11 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- End Testimonials Section -->
 
     <!-- Blog Section -->
-    <section class="blog-section">
+    <!-- <section class="blog-section">
         <div class="container">
             <div class="section-title centred mb_60">
                 <span>Checkout Blog Posts</span>
@@ -804,11 +1192,11 @@
                             class="fa-solid fa-arrow-right"></i></a></div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- End Blog Section -->
 
     <!-- Clients Section -->
-    <div class="clients-section">
+    <!-- <div class="clients-section">
         <div class="container">
             <div class="clients-outer">
                 <ul class="clients-carousel owl-carousel">
@@ -835,11 +1223,11 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div> -->
     <!-- End Clients Section -->
 
     <!-- Cta Section -->
-    <section class="cta-section">
+    <!-- <section class="cta-section">
         <div class="container">
             <div class="cta-inner">
                 <h3>Let’s fight with all injustice <br>and corruption</h3>
@@ -847,13 +1235,13 @@
                             class="fa-solid fa-arrow-right"></i></a></div>
             </div>
         </div>
-    </section>
+    </section> -->
     <!-- End Cta Section -->
 
     <!-- Main Footer -->
     <footer class="main-footer">
         <div class="container">
-            <div class="footer-top">
+            <!-- <div class="footer-top">
                 <div class="footer-widget logo-widget">
                     <div class="footer-logo"><a href="index.html"><img src="images/footer-logo.svg" alt=""></a>
                     </div>
@@ -865,8 +1253,8 @@
                         <li><a href="index.html"><span class="fab fa-linkedin-in"></span></a></li>
                     </ul>
                 </div>
-            </div>
-            <div class="footer-middle">
+            </div> -->
+            <!-- <div class="footer-middle">
                 <div class="row">
                     <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12">
                         <div class="footer-widget about-widget">
@@ -901,10 +1289,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
             <div class="footer-bottom">
-                <div class="copyright-text centred">&copy; 2025 All rights reserved. Powered by <a
-                        href="index.html">Open.city</a></div>
+                <div class="copyright-text centred"> <a href="https://www.facebook.com/SVDMfanpage">Sinh Viên Nhịp
+                        Bước Đa Minh</a>
+                    <br>
+                    NĂNG ĐỘNG - LIÊN ĐỚI - DẤN THÂN
+                </div>
             </div>
         </div>
     </footer>

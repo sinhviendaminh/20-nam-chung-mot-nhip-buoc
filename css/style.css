@@ -1,5 +1,16 @@
 /*** ================== Style CSS =================== ***/
 
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
 /* Feature Banner */
 .feature-banner {
   position: relative;
@@ -35,8 +46,9 @@
   border-radius: 10px;
   background: linear-gradient(
     180deg,
-    rgba(196, 196, 196, 0) 8.49%,
-    #00aa55 85.47%
+    rgba(0, 0, 0, 0.3) 0%,
+    rgba(0, 0, 0, 0.5) 50%,
+    rgba(152, 2, 12, 0.8) 100%
   );
 }
 .feature-banner .quote {
@@ -54,27 +66,130 @@
   font-size: 150px;
   color: rgb(255 255 255 / 10%);
 }
-.feature-banner h3 {
+.feature-banner .invitation-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.feature-banner .invitation-content p {
   color: var(--white-color);
   font-weight: 400;
+  font-size: 20px;
+  line-height: 34px;
+  text-align: center;
+  margin-bottom: 25px;
+}
+.feature-banner .invitation-intro {
   font-size: 22px;
   line-height: 36px;
-  margin-bottom: 5px;
+  margin-bottom: 30px !important;
+  font-weight: 500;
+}
+.feature-banner .invitation-guests {
+  margin: 30px 0;
+  padding: 0;
   text-align: center;
-  padding: 0 20px;
+}
+.feature-banner .invitation-guests p {
+  color: #ffd700;
+  font-size: 32px;
+  line-height: 48px;
+  font-weight: 400;
+  margin-bottom: 0 !important;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.3);
+  letter-spacing: 1px;
+  font-family: "Great Vibes", cursive;
+  font-style: normal;
+  text-transform: none;
+  text-align: center;
+}
+.feature-banner .invitation-message {
+  font-size: 20px;
+  line-height: 34px;
+  margin-top: 30px;
+  margin-bottom: 40px !important;
+}
+.feature-banner .invitation-details {
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+  text-align: center;
+}
+.feature-banner .invitation-details .detail-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+  text-align: center;
+}
+.feature-banner .invitation-details .detail-item:last-child {
+  margin-bottom: 0;
+}
+.feature-banner .invitation-details .detail-item i {
+  font-size: 28px;
+  color: #ffd700;
+  margin-right: 15px;
+  flex-shrink: 0;
+}
+.feature-banner .invitation-details .detail-content {
+  flex: 0 1 auto;
+  text-align: center;
+}
+.feature-banner .invitation-details .detail-content strong {
+  display: block;
+  color: #ffd700;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}
+.feature-banner .invitation-details .detail-content span {
+  display: block;
+  color: var(--white-color);
+  font-size: 19px;
+  line-height: 30px;
+  font-weight: 400;
+  text-align: center;
+}
+.feature-banner .invitation-footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-top: 30px;
+  padding-right: 30px;
+}
+.feature-banner .signature-wrapper {
+  text-align: right;
+  z-index: 9;
 }
 .feature-banner .signature {
-  z-index: 9;
-  margin-bottom: 22px;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+.feature-banner .signature img {
+  max-width: 200px;
+  height: auto;
+  filter: brightness(0) invert(1);
 }
 .feature-banner .author-name {
   font-size: 18px;
-  line-height: 30px;
-  font-weight: 400;
+  line-height: 28px;
+  font-weight: 500;
   color: var(--white-color);
+  margin-bottom: 8px;
+  font-style: italic;
+  letter-spacing: 0.5px;
 }
-.feature-banner span {
+.feature-banner .signature-wrapper span {
   color: var(--white-color);
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  display: block;
+  margin-top: 5px;
 }
 /* End Feature Banner */
 
@@ -391,6 +506,7 @@
 }
 .tabs-content .tab-box .tab-image {
   width: 50%;
+  padding-right: 20px;
 }
 .tabs-content .tab-box .tab-content {
   width: 50%;
@@ -2484,10 +2600,21 @@
 .history-image {
   display: block;
   text-align: center;
-  padding-top: 60px;
+  padding: 0px;
   background-color: var(--white-color);
   border: 1px solid rgba(0, 0, 0, 0.1);
-  border-radius: 10px 10px 0px 0px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.history-image figure {
+  margin: 0;
+  padding: 0;
+}
+.history-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
 }
 .est-date {
   font-style: normal;
@@ -2505,8 +2632,17 @@
 .protfolio-block-one .inner-box img {
   width: 100%;
 }
+.history-banner-image {
+  background-color: var(--white-color);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  padding: 0;
+  overflow: hidden;
+}
 .history-banner-image img {
   width: 100%;
+  height: auto;
+  display: block;
 }
 .history-block-one {
   position: relative;
@@ -2534,6 +2670,181 @@
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 /** End History Section **/
+
+/** Linh Huong Section **/
+.main-portrait-image {
+  margin-bottom: 20px;
+}
+.main-portrait-image .image {
+  border-radius: 10px;
+  overflow: hidden;
+  background-color: var(--white-color);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.main-portrait-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.portrait-caption {
+  margin-top: 15px;
+  margin-bottom: 30px;
+}
+.portrait-caption h5 {
+  font-weight: 700;
+  margin-bottom: 5px;
+  color: var(--title-color);
+}
+.portrait-caption p {
+  color: var(--paragraph-color);
+  margin: 0;
+}
+.companion-items-wrapper {
+  position: relative;
+}
+.companion-items-wrapper .row {
+  margin: 0;
+}
+.companion-items-wrapper .row > [class*="col-"] {
+  padding: 0 15px;
+}
+.companion-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.companion-image {
+  max-width: 212px;
+  width: 212px;
+  height: 212px;
+  flex-shrink: 0;
+  margin-right: 30px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+.companion-image figure {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+.companion-image img {
+  width: 212px;
+  height: 212px;
+  object-fit: cover;
+  display: block;
+  transform: scale(1);
+  transition: all 500ms ease;
+  -moz-transition: all 500ms ease;
+  -webkit-transition: all 500ms ease;
+  -ms-transition: all 500ms ease;
+  -o-transition: all 500ms ease;
+}
+.companion-item:hover .companion-image img {
+  transform: scale(1.15);
+}
+.companion-content {
+  flex: 1;
+}
+.companion-content h6 {
+  font-weight: 700;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: var(--title-color);
+}
+.companion-content p {
+  font-size: 12px;
+  color: var(--paragraph-color);
+  margin: 0;
+}
+.circular-portrait-block {
+  text-align: center;
+  padding: 20px 10px;
+}
+.portrait-image {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 15px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid var(--primary-color);
+  transition: all 0.3s ease;
+}
+.portrait-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+.portrait-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.circular-portrait-block h6 {
+  font-weight: 700;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: var(--title-color);
+}
+.circular-portrait-block p {
+  font-size: 14px;
+  color: var(--paragraph-color);
+  margin: 0;
+}
+@media (max-width: 1199px) {
+  .portrait-image {
+    width: 180px;
+    height: 180px;
+  }
+  /* Tablet: companion-item hiển thị dạng grid 2 cột (ảnh trên, text dưới) */
+  .companion-item {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 0;
+  }
+  .companion-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    margin-right: 0;
+    margin-bottom: 15px;
+    aspect-ratio: 1 / 1;
+  }
+  .companion-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .companion-content {
+    text-align: center;
+  }
+}
+@media (max-width: 991px) {
+  /* Tablet: vẫn giữ 2 cột */
+  .about-section-four .row > [class*="col-"] {
+    margin-bottom: 40px;
+  }
+}
+@media (max-width: 767px) {
+  /* Mobile: 1 cột - các phần tử stack vertically */
+  .portrait-image {
+    width: 150px;
+    height: 150px;
+  }
+  .circular-portrait-block {
+    margin-bottom: 30px;
+  }
+  /* Đảm bảo các cột trên mobile có margin-bottom */
+  .about-section-four .row > [class*="col-"] {
+    margin-bottom: 50px;
+  }
+  .about-section-four .row > [class*="col-"]:last-child {
+    margin-bottom: 0;
+  }
+}
+/** End Linh Huong Section **/
 
 /** Protfolio Section **/
 .protfolio-section .title-area {
@@ -3607,4 +3918,195 @@
   line-height: 26px;
   font-family: var(--rowdiess);
   color: var(--paragraph-color);
+}
+
+/* Wish Popup */
+.wish-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 99999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.wish-popup.popup-visible {
+  display: flex;
+}
+
+.wish-popup-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+}
+
+.wish-popup-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.wish-popup-content {
+  background: var(--white-color);
+  border-radius: 15px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  animation: wishPopupSlideIn 0.3s ease-out;
+}
+
+@keyframes wishPopupSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.wish-popup-header {
+  background: var(--primary-color);
+  color: var(--white-color);
+  padding: 25px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.wish-popup-header h3 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--white-color);
+}
+
+.wish-popup-close {
+  background: transparent;
+  border: none;
+  color: var(--white-color);
+  font-size: 24px;
+  cursor: pointer;
+  padding: 0;
+  width: 35px;
+  height: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.wish-popup-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+.wish-popup-body {
+  padding: 30px;
+}
+
+.wish-form .form-group {
+  margin-bottom: 25px;
+}
+
+.wish-form label {
+  display: block;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--title-color);
+  margin-bottom: 8px;
+  font-family: var(--montserrat);
+}
+
+.wish-form label span {
+  color: #e74c3c;
+}
+
+.wish-form .form-control {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  font-size: 15px;
+  font-family: var(--montserrat);
+  color: var(--paragraph-color);
+  transition: all 0.3s ease;
+}
+
+.wish-form .form-control:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(152, 2, 12, 0.1);
+}
+
+.wish-form textarea.form-control {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+  justify-content: flex-end;
+}
+
+.form-actions .button-style-three,
+.form-actions .button-style-two {
+  padding: 12px 30px;
+  border: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-actions .button-style-two {
+  background: #f0f0f0;
+  color: var(--paragraph-color);
+}
+
+.form-actions .button-style-two:hover {
+  background: #e0e0e0;
+}
+
+.wish-success-message {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.wish-success-message i {
+  font-size: 60px;
+  color: #27ae60;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.wish-success-message h4 {
+  font-size: 24px;
+  color: var(--title-color);
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.wish-success-message p {
+  font-size: 16px;
+  color: var(--paragraph-color);
+  line-height: 1.6;
 }
