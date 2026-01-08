@@ -525,7 +525,10 @@
                 <div class="title-shape"><img src="images/resource/title-shape.png" alt=""></div>
             </div>
             <div class="row">
-                <div class="col-12">
+                <!-- Left Column: Invitation Card with Cover Image -->
+                <div class="col-xl-6 col-lg-12">
+                   
+                    <!-- Invitation Card -->
                     <div class="feature-banner mb_30" style="background-image: url(images/feature/feature-banner.jpg);">
                         <!-- <div class="quote"><i class="flaticon-quote-1"></i></div> -->
                         <div class="shape-quote"><i class="flaticon-quote-1"></i></div>
@@ -567,6 +570,27 @@
                                 <div class="signature"><img src="images/feature/signature.png" alt=""></div>
                                 <div class="author-name">Nhóm Sinh Viên Nhịp Bước Đa Minh</div>
                                 <span>Kỷ niệm 20 năm</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Right Column: Invitation with Flip Effect -->
+                <div class="col-xl-6 col-lg-12">
+                    <div class="invitation-flip-container">
+                        <!-- Cover Image (Bottom Layer) -->
+                        <div class="invitation-cover-layer">
+                            <figure>
+                                <img src="assets/images/invitation/thiep-2.jpg" alt="Ảnh bìa thiệp mời">
+                            </figure>
+                        </div>
+                        <!-- Invitation Image (Top Layer - Clickable) -->
+                        <div class="invitation-top-layer" id="invitation-flip">
+                            <figure>
+                                <img src="assets/images/invitation/thiep-1.jpg" alt="Thiệp mời">
+                            </figure>
+                            <div class="flip-hint">
+                                <i class="fa-solid fa-envelope-open"></i>
+                                <span>Nhấp để mở thiệp</span>
                             </div>
                         </div>
                     </div>
@@ -1300,6 +1324,19 @@
         </div>
     </footer>
     <!-- End Main Footer -->
+
+    <!-- Background Music -->
+    <audio id="background-music" loop>
+        <source src="assets/sounds/nhip-buoc-sinh-vien.mp3" type="audio/mpeg">
+    </audio>
+    <!-- End Background Music -->
+
+    <!-- Music Toggle Button -->
+    <button id="music-toggle" class="scroll-top music-toggle" title="Bật/Tắt nhạc nền">
+        <i class="fa-solid fa-music" id="music-icon"></i>
+        <i class="fa-solid fa-slash" id="music-slash" style="display: none;"></i>
+    </button>
+    <!-- End Music Toggle Button -->
 
     <!-- Scroll to Top -->
     <button class="scroll-top scroll-to-target" data-target="html">

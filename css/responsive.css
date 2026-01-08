@@ -678,6 +678,13 @@
   .feature-banner .signature-wrapper span {
     font-size: 14px;
   }
+  .invitation-side-image {
+    min-height: 400px;
+    margin-top: 30px;
+  }
+  .invitation-cover-image {
+    margin-bottom: 20px;
+  }
   .history-banner-image {
     margin-bottom: 40px;
   }

@@ -20,13 +20,22 @@
     if ($(".main-header").length) {
       var windowpos = $(window).scrollTop();
       var siteHeader = $(".main-header");
-      var scrollLink = $(".scroll-top");
+      var scrollLink = $(".scroll-top.scroll-to-target");
+      var musicBtn = $("#music-toggle");
       if (windowpos >= 150) {
         siteHeader.addClass("fixed-header");
         scrollLink.addClass("open");
+        // Move music button up when scroll to top is visible
+        if (musicBtn.length) {
+          musicBtn.addClass("scroll-visible");
+        }
       } else {
         siteHeader.removeClass("fixed-header");
         scrollLink.removeClass("open");
+        // Move music button to scroll to top position when scroll is hidden
+        if (musicBtn.length) {
+          musicBtn.removeClass("scroll-visible");
+        }
       }
     }
   }
@@ -615,6 +624,86 @@
     });
   }
 
+  // Invitation Cover Click Effect
+  if ($(".invitation-cover-link").length) {
+    $(".invitation-cover-link").on("click", function (e) {
+      // Add opening animation class
+      $(this).addClass("opening");
+      setTimeout(function () {
+        $(".invitation-cover-link").removeClass("opening");
+      }, 500);
+    });
+  }
+
+  // Invitation Flip Effect
+  if ($(".invitation-flip-container").length) {
+    var flipContainer = $(".invitation-flip-container");
+    var isFlipped = false;
+    // Change animation type here: "flipped", "slide-up", "fly-away", "pull-out", "pull-out-right", "pull-out-up"
+    var animationType = "pull-out"; // Default to pull-out effect
+
+    // Calculate aspect ratio from image
+    function setAspectRatio() {
+      var container = flipContainer.first();
+      var img = container.find("img").first();
+      
+      if (img.length && img[0].complete) {
+        var imgWidth = img[0].naturalWidth;
+        var imgHeight = img[0].naturalHeight;
+        
+        if (imgWidth > 0 && imgHeight > 0) {
+          var aspectRatio = (imgHeight / imgWidth) * 100;
+          container.css("padding-bottom", aspectRatio + "%");
+        }
+      } else if (img.length) {
+        // Wait for image to load
+        img.on("load", function() {
+          var imgWidth = this.naturalWidth;
+          var imgHeight = this.naturalHeight;
+          
+          if (imgWidth > 0 && imgHeight > 0) {
+            var aspectRatio = (imgHeight / imgWidth) * 100;
+            container.css("padding-bottom", aspectRatio + "%");
+          }
+        });
+      }
+    }
+
+    // Set aspect ratio on load
+    $(window).on("load", function () {
+      setTimeout(setAspectRatio, 100);
+    });
+    setAspectRatio();
+
+    flipContainer.on("click", function (e) {
+      e.preventDefault();
+      
+      if (!isFlipped) {
+        // Remove all animation classes first
+        $(this).removeClass("flipped slide-up fly-away pull-out pull-out-right pull-out-up");
+        // Add selected animation class
+        $(this).addClass(animationType);
+        isFlipped = true;
+      } else {
+        // Reset to original state - remove all animation classes
+        $(this).removeClass("flipped slide-up fly-away pull-out pull-out-right pull-out-up");
+        isFlipped = false;
+      }
+    });
+
+    // Optional: Add keyboard support (Space or Enter to flip)
+    $(document).on("keydown", function (e) {
+      if (
+        (e.key === " " || e.key === "Enter") &&
+        flipContainer.length &&
+        !$("input, textarea").is(":focus")
+      ) {
+        e.preventDefault();
+        flipContainer.trigger("click");
+      }
+    });
+  }
+
   // Scroll to a Specific Div
   if ($(".scroll-to-target").length) {
     $(".scroll-to-target").on("click", function () {
@@ -887,5 +976,70 @@
 
   $(document).ready(function () {
     initWishPopup();
+  });
+
+  // Background Music Toggle
+  function initBackgroundMusic() {
+    var music = document.getElementById("background-music");
+    var musicToggle = document.getElementById("music-toggle");
+    var musicIcon = document.getElementById("music-icon");
+    var musicSlash = document.getElementById("music-slash");
+    var isPlaying = false;
+
+    // Load saved music state from localStorage
+    var savedState = localStorage.getItem("backgroundMusicState");
+    if (savedState === "playing") {
+      music.play().catch(function (error) {
+        console.log("Auto-play prevented:", error);
+      });
+      isPlaying = true;
+      musicToggle.classList.add("music-playing");
+      if (musicSlash) {
+        musicSlash.style.display = "none";
+      }
+    } else {
+      // Show slash icon when music is paused
+      if (musicSlash) {
+        musicSlash.style.display = "block";
+      }
+    }
+
+    // Toggle music on button click
+    if (musicToggle) {
+      musicToggle.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+
+        if (isPlaying) {
+          music.pause();
+          isPlaying = false;
+          musicToggle.classList.remove("music-playing");
+          if (musicSlash) {
+            musicSlash.style.display = "block";
+          }
+          localStorage.setItem("backgroundMusicState", "paused");
+        } else {
+          music
+            .play()
+            .then(function () {
+              isPlaying = true;
+              musicToggle.classList.add("music-playing");
+              if (musicSlash) {
+                musicSlash.style.display = "none";
+              }
+              localStorage.setItem("backgroundMusicState", "playing");
+            })
+            .catch(function (error) {
+              console.log("Play failed:", error);
+            });
+        }
+      });
+    }
+
+  }
+
+  // Initialize background music
+  $(document).ready(function () {
+    initBackgroundMusic();
   });
 })(window.jQuery);

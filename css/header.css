@@ -1055,6 +1055,43 @@ div#mCSB_1_container {
   animation-delay: 0.6s;
 }
 
+/** Music Toggle Button **/
+.music-toggle {
+  transform: none; /* Remove rotation for music button */
+  bottom: 50px; /* Default position - same as scroll to top when visible */
+  opacity: 1;
+  visibility: visible;
+  transition: bottom 1s ease; /* Smooth transition when position changes */
+}
+
+.music-toggle.scroll-visible {
+  bottom: 120px; /* Move up when scroll to top button is visible */
+}
+
+.music-toggle.music-playing {
+  background-color: var(--primary-color);
+  color: var(--white-color);
+}
+
+.music-toggle i {
+  display: inline-block;
+  line-height: 55px;
+}
+
+.music-toggle #music-slash {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 24px;
+  color: var(--primary-color);
+  z-index: 1;
+}
+
+.music-toggle.music-playing #music-slash {
+  display: none !important;
+}
+
 /** Hidden Sidebar **/
 .main-header.style-two .container {
   max-width: 1450px;
