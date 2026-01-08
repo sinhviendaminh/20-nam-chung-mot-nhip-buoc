@@ -275,7 +275,8 @@ html {
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -405,7 +406,8 @@ html {
 }
 
 @keyframes bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -439,7 +441,8 @@ html {
 .invitation-flip-container.pull-out .invitation-top-layer {
   transform: translateX(100%) translateY(-50%) rotateY(-45deg);
   opacity: 0;
-  transition: transform 1s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.8s ease;
+  transition: transform 1s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+    opacity 0.8s ease;
 }
 
 /* Alternative Pull Out: Slide to Right */
@@ -453,7 +456,8 @@ html {
 .invitation-flip-container.pull-out-up .invitation-top-layer {
   transform: translateY(-120%) translateX(50%) rotateZ(-15deg) scale(0.9);
   opacity: 0;
-  transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55), opacity 0.8s ease;
+  transition: transform 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+    opacity 0.8s ease;
 }
 
 /* Hover Effect */
