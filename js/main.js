@@ -646,21 +646,21 @@
     function setAspectRatio() {
       var container = flipContainer.first();
       var img = container.find("img").first();
-      
+
       if (img.length && img[0].complete) {
         var imgWidth = img[0].naturalWidth;
         var imgHeight = img[0].naturalHeight;
-        
+
         if (imgWidth > 0 && imgHeight > 0) {
           var aspectRatio = (imgHeight / imgWidth) * 100;
           container.css("padding-bottom", aspectRatio + "%");
         }
       } else if (img.length) {
         // Wait for image to load
-        img.on("load", function() {
+        img.on("load", function () {
           var imgWidth = this.naturalWidth;
           var imgHeight = this.naturalHeight;
-          
+
           if (imgWidth > 0 && imgHeight > 0) {
             var aspectRatio = (imgHeight / imgWidth) * 100;
             container.css("padding-bottom", aspectRatio + "%");
@@ -677,16 +677,20 @@
 
     flipContainer.on("click", function (e) {
       e.preventDefault();
-      
+
       if (!isFlipped) {
         // Remove all animation classes first
-        $(this).removeClass("flipped slide-up fly-away pull-out pull-out-right pull-out-up");
+        $(this).removeClass(
+          "flipped slide-up fly-away pull-out pull-out-right pull-out-up"
+        );
         // Add selected animation class
         $(this).addClass(animationType);
         isFlipped = true;
       } else {
         // Reset to original state - remove all animation classes
-        $(this).removeClass("flipped slide-up fly-away pull-out pull-out-right pull-out-up");
+        $(this).removeClass(
+          "flipped slide-up fly-away pull-out pull-out-right pull-out-up"
+        );
         isFlipped = false;
       }
     });
@@ -930,7 +934,7 @@
         );
 
         var scriptURL =
-          "https://script.google.com/macros/s/AKfycbxE7LkZx9Sds8hHCOb0vgvX6FR0FfJahVbTxWlwEyKKlBWo0EHi4isc7NgC0_mAeTk/exec";
+          "https://script.google.com/macros/s/AKfycbz_I_rVX6apycf2PCc8vSvzd3fgL9lCgJDm3YHKdLi6sLuFQ5Y7PQngJyuShZmOAjAamw/exec";
 
         $.ajax({
           url: scriptURL,
@@ -988,23 +992,26 @@
     });
 
     // Close popup
-    $(".attendance-popup-close, #attendance-popup .wish-popup-backdrop").on("click", function () {
-      attendancePopup.removeClass("popup-visible");
-      $("body").css("overflow", "");
-      // Reset form after closing
-      setTimeout(function () {
-        attendanceForm[0].reset();
-        attendanceForm.show();
-        attendanceSuccess.hide();
-        $(".status-button").removeClass("active");
-        $("#attendance-status").val("");
-        var submitBtn = attendanceForm.find('button[type="submit"]');
-        submitBtn
-          .prop("disabled", false)
-          .removeClass("loading")
-          .html('Xác nhận tham dự <i class="fa-solid fa-check"></i>');
-      }, 300);
-    });
+    $(".attendance-popup-close, #attendance-popup .wish-popup-backdrop").on(
+      "click",
+      function () {
+        attendancePopup.removeClass("popup-visible");
+        $("body").css("overflow", "");
+        // Reset form after closing
+        setTimeout(function () {
+          attendanceForm[0].reset();
+          attendanceForm.show();
+          attendanceSuccess.hide();
+          $(".status-button").removeClass("active");
+          $("#attendance-status").val("");
+          var submitBtn = attendanceForm.find('button[type="submit"]');
+          submitBtn
+            .prop("disabled", false)
+            .removeClass("loading")
+            .html('Xác nhận tham dự <i class="fa-solid fa-check"></i>');
+        }, 300);
+      }
+    );
 
     // Close on ESC key
     $(document).keydown(function (e) {
@@ -1030,10 +1037,10 @@
     $(".status-button").on("click", function () {
       // Remove active class from all buttons
       $(".status-button").removeClass("active");
-      
+
       // Add active class to clicked button
       $(this).addClass("active");
-      
+
       // Update hidden input with selected status
       var status = $(this).data("status");
       $("#attendance-status").val(status);
@@ -1042,21 +1049,23 @@
     // Handle form submission
     attendanceForm.on("submit", function (e) {
       e.preventDefault();
-      
+
       // Validate status selection
       var selectedStatus = $("#attendance-status").val();
       if (!selectedStatus) {
         alert("Vui lòng chọn trạng thái tham dự!");
         return;
       }
-      
+
       var submitBtn = attendanceForm.find('button[type="submit"]');
       var formData = {
         name: $("#attendance-name").val(),
         birthYear: $("#attendance-birth-year").val(),
         status: selectedStatus,
         note: $("#attendance-note").val(),
-        timestamp: new Date().toLocaleString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh" }),
+        timestamp: new Date().toLocaleString("vi-VN", {
+          timeZone: "Asia/Ho_Chi_Minh",
+        }),
         url: window.location.href,
       };
 
@@ -1064,16 +1073,21 @@
       submitBtn.prop("disabled", true).addClass("loading");
       submitBtn.html('<i class="fa-solid fa-spinner fa-spin"></i> Đang gửi...');
 
-      // TODO: Replace with your Google Apps Script URL for attendance
-      var scriptURL = "YOUR_ATTENDANCE_GOOGLE_APPS_SCRIPT_URL_HERE";
+      // Sử dụng cùng Google Apps Script URL như wish form
+      // Script sẽ tự động phân biệt loại request dựa trên dữ liệu
+      var scriptURL =
+        "https://script.google.com/macros/s/AKfycbz_I_rVX6apycf2PCc8vSvzd3fgL9lCgJDm3YHKdLi6sLuFQ5Y7PQngJyuShZmOAjAamw/exec";
 
       $.ajax({
         url: scriptURL,
         method: "POST",
-        dataType: "json",
         data: formData,
+        traditional: true,
         success: function (response) {
-          if (response.success) {
+          var result =
+            typeof response === "string" ? JSON.parse(response) : response;
+
+          if (result.success) {
             attendanceForm.hide();
             attendanceSuccess.fadeIn();
             setTimeout(function () {
@@ -1092,15 +1106,18 @@
               }, 300);
             }, 2000);
           } else {
-            alert(response.error || "Có lỗi xảy ra. Vui lòng thử lại!");
+            alert(result.error || "Có lỗi xảy ra. Vui lòng thử lại!");
             submitBtn
               .prop("disabled", false)
               .removeClass("loading")
               .html('Xác nhận tham dự <i class="fa-solid fa-check"></i>');
           }
         },
-        error: function () {
-          alert("Có lỗi xảy ra khi gửi xác nhận. Vui lòng thử lại sau hoặc liên hệ với chúng tôi!");
+        error: function (xhr, status, error) {
+          console.error("Error saving attendance:", error, xhr);
+          alert(
+            "Có lỗi xảy ra khi gửi xác nhận. Vui lòng thử lại sau hoặc liên hệ với chúng tôi!"
+          );
           submitBtn
             .prop("disabled", false)
             .removeClass("loading")
@@ -1172,7 +1189,6 @@
         }
       });
     }
-
   }
 
   // Initialize background music
