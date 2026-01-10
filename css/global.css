@@ -23,9 +23,14 @@ body {
   line-height: 26px;
   font-weight: 400;
   font-family: var(--montserrat);
+  background-image: url("../assets/images/bg/backgound-full.jpeg");
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center top;
+  background-position: center center;
+  background-attachment: fixed;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  image-rendering: high-quality;
   -webkit-font-smoothing: antialiased;
 }
 .boxed_wrapper {
@@ -60,7 +65,7 @@ body {
   margin-right: -10px;
 }
 .row > * {
-  padding: 0 15px;
+  padding: 0 10px;
 }
 .row.no-gutters > * {
   padding: 0;

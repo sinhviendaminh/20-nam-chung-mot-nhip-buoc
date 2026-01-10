@@ -1935,6 +1935,53 @@ html {
 .team-block-one.style-three:hover .team-info span {
   color: var(--white-color);
 }
+/** Image Size Variants for 16:9 Layout **/
+.team-block-one.style-three.image-small .team-image,
+.team-block-one.style-three.image-large .team-image {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+.team-block-one.style-three.image-small .team-image::before {
+  content: "";
+  display: block;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+}
+.team-block-one.style-three.image-large .team-image::before {
+  content: "";
+  display: block;
+  padding-top: 56.25%; /* 16:9 aspect ratio */
+}
+.team-block-one.style-three.image-small .team-image figure,
+.team-block-one.style-three.image-large .team-image figure {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+.team-block-one.style-three.image-small .team-image img,
+.team-block-one.style-three.image-large .team-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+/** Align images in same row to bottom **/
+.row > .image-row-1,
+.row > .image-row-2 {
+  display: flex;
+  align-items: flex-end;
+}
+.row > .image-row-1 .team-block-one,
+.row > .image-row-2 .team-block-one {
+  width: 100%;
+}
+/** Ảnh 4 căn top như cũ **/
+.row > .image-align-top {
+  align-items: flex-start !important;
+}
 /** End Team Block Style Three **/
 
 /** Testimonial Block Two **/
@@ -2341,13 +2388,53 @@ html {
 
 /** About Section Four **/
 .about-section-four {
+  position: relative;
+  padding: 0;
+}
+.about-section-four .slide {
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
   padding: 150px 0px 120px;
 }
+.about-section-four .slide::before {
+  position: absolute;
+  content: "";
+  background: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  left: 0px;
+  top: 0px;
+  z-index: 1;
+}
+.about-section-four .slide .container {
+  position: relative;
+  z-index: 2;
+}
+.about-section-four .slide .section-title h1 {
+  color: var(--white-color);
+}
+.about-section-four .slide .section-title p {
+  color: var(--white-color);
+}
+/** Linh Huong Section **/
+.linh-huong-section {
+  position: relative;
+  padding: 0;
+}
+.linh-huong-section .section-title h1 {
+  color: var(--title-color);
+}
+.linh-huong-section .section-title p {
+  color: var(--paragraph-color);
+}
+/** End Linh Huong Section **/
 .about-content-four {
   margin-top: 30px;
 }
 .about-content-four h3 {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 .about-content-four h5 {
   font-weight: 700;
@@ -2357,7 +2444,7 @@ html {
 .about-content-four p {
   font-size: 16px;
   line-height: 29px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   color: var(--paragraph-color);
 }
 .about-section-four .image img {
@@ -2942,6 +3029,101 @@ html {
   line-height: 29px;
   color: var(--paragraph-color);
 }
+/* Đảm bảo các cột trong history section có chiều cao đều nhau */
+.history-section .row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+.history-section .row > [class*="col-"] {
+  display: flex;
+  flex-direction: column;
+}
+.history-section .row > [class*="col-"] > div {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
+}
+.history-section .row > [class*="col-"] > div > div {
+  display: flex;
+  flex-direction: column;
+}
+.history-section .history-banner-image,
+.history-section .history-image {
+  display: flex;
+  flex-direction: column;
+}
+.history-section .history-banner-image figure,
+.history-section .history-image figure {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+.history-section .history-banner-image img,
+.history-section .history-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.history-section .history-block-one {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex: 1;
+}
+.history-section .est-date {
+  flex-shrink: 0;
+}
+/* Mobile: Đảm bảo tất cả ảnh có cùng aspect ratio và loại bỏ padding */
+@media (max-width: 1199px) {
+  .history-section .d-xl-none .row {
+    margin-left: -5px;
+    margin-right: -5px;
+  }
+  .history-section .d-xl-none .row > [class*="col-"] {
+    margin-bottom: 5 !important;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+  .history-section .d-xl-none .history-banner-image,
+  .history-section .d-xl-none .history-image {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    border-radius: 5;
+  }
+  .history-section .d-xl-none .history-banner-image figure,
+  .history-section .d-xl-none .history-image figure {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .history-section .d-xl-none .history-banner-image img,
+  .history-section .d-xl-none .history-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  /* Giảm font size và padding cho history-block-one trên mobile */
+  .history-section .d-xl-none .history-block-one {
+    padding: 15px 10px;
+  }
+  .history-section .d-xl-none .history-block-one h3.year {
+    font-size: 24px;
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .history-section .d-xl-none .history-block-one p {
+    font-size: 14px;
+    line-height: 22px;
+    margin: 0;
+  }
+}
 .explore-online-services.sec-padding-150 {
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
@@ -3036,37 +3218,55 @@ html {
 }
 .circular-portrait-block {
   text-align: center;
-  padding: 20px 10px;
+  padding: 10px 5px;
 }
-.portrait-image {
+.circular-portrait-block .portrait-image {
   width: 200px;
   height: 200px;
-  margin: 0 auto 15px;
+  margin: 0 auto 10px;
   border-radius: 50%;
   overflow: hidden;
   border: 3px solid var(--primary-color);
   transition: all 0.3s ease;
 }
-.portrait-image:hover {
+.circular-portrait-block .portrait-image:hover {
   transform: scale(1.05);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
-.portrait-image img {
+.circular-portrait-block .portrait-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
 }
-.circular-portrait-block h6 {
-  font-weight: 700;
-  margin-bottom: 5px;
-  font-size: 14px;
-  color: var(--title-color);
+.circular-portrait-block .content-box {
+  padding: 0;
 }
-.circular-portrait-block p {
-  font-size: 14px;
+.circular-portrait-block .content-box p {
+  font-size: 0.7em;
+  line-height: 1.4;
+  margin-bottom: 5px;
   color: var(--paragraph-color);
-  margin: 0;
+  opacity: 0.8;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+.circular-portrait-block .content-box h6 {
+  font-weight: 700;
+  font-size: 1em;
+  line-height: 1.3;
+  color: var(--title-color);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  margin-bottom: 0;
+}
+/** Reduce margin for circular portrait items **/
+#truong-nhom .row > [class*="col-"] {
+  margin-bottom: 15px;
+}
+#truong-nhom .circular-portrait-block {
+  margin-bottom: 0;
 }
 @media (max-width: 1199px) {
   .portrait-image {
@@ -3114,7 +3314,7 @@ html {
   }
   /* Đảm bảo các cột trên mobile có margin-bottom */
   .about-section-four .row > [class*="col-"] {
-    margin-bottom: 50px;
+    margin-bottom: 10px;
   }
   .about-section-four .row > [class*="col-"]:last-child {
     margin-bottom: 0;
