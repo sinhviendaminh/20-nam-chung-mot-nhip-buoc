@@ -153,6 +153,68 @@
     </div>
     <!-- End Wish Message Popup -->
 
+    <!-- Attendance Confirmation Popup -->
+    <div id="attendance-popup" class="wish-popup">
+        <div class="wish-popup-backdrop"></div>
+        <div class="wish-popup-inner">
+            <div class="wish-popup-content">
+                <div class="wish-popup-header">
+                    <h3>Xác nhận tham dự</h3>
+                    <button class="wish-popup-close attendance-popup-close" type="button">
+                        <i class="fa-solid fa-times"></i>
+                    </button>
+                </div>
+                <div class="wish-popup-body">
+                    <form id="attendance-form" class="wish-form">
+                        <div class="form-group">
+                            <label for="attendance-name">Tên thánh kèm họ và tên <span>*</span></label>
+                            <input type="text" id="attendance-name" name="name" class="form-control"
+                                placeholder="Nhập tên thánh kèm họ và tên (VD: Giuse - Nguyễn Văn A)" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="attendance-birth-year">Năm sinh <span>*</span></label>
+                            <input type="number" id="attendance-birth-year" name="birth-year" class="form-control"
+                                placeholder="Nhập năm sinh (VD: 1990)" required>
+                        </div>
+
+                        <div class="form-group">
+                            <!-- <label>Trạng thái tham dự <span>*</span></label> -->
+                            <div class="attendance-status-buttons">
+                                <button type="button" class="status-button status-button-yes" data-status="yes">
+                                    <img src="assets/images/status/yeah.svg" alt="Có thể tham dự">
+                                    <span>Sẵn sàng</span>
+                                </button>
+                                <button type="button" class="status-button status-button-no" data-status="no">
+                                    <img src="assets/images/status/oh.svg" alt="Không thể tham dự">
+                                    <span>Rất tiếc</span>
+                                </button>
+                            </div>
+                            <input type="hidden" id="attendance-status" name="status" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="attendance-note">Ghi chú</label>
+                            <textarea id="attendance-note" name="note" class="form-control" rows="3"
+                                placeholder="Ghi chú thêm (nếu có)..."></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" class="button-style-three">Xác nhận tham dự <i
+                                    class="fa-solid fa-check"></i></button>
+                        </div>
+                    </form>
+                    <div id="attendance-success" class="wish-success-message" style="display: none;">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <h4>Cảm ơn bạn!</h4>
+                        <p>Xác nhận tham dự của bạn đã được gửi thành công. Chúng tôi rất mong được gặp bạn tại sự kiện!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Attendance Confirmation Popup -->
+
     <!-- Main Header -->
     <header class="main-header">
 
@@ -403,6 +465,14 @@
                     </div>
                 </div>
 
+                <div class="col-6 mb_30">
+                    <div class="history-banner-image">
+                        <figure>
+                            <img src="assets/images/resource/truyen-thong-4.jpeg" alt="">
+                        </figure>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -413,11 +483,12 @@
                 <div class="col-xl-6 col-md-12">
                     <div class="about-content-four">
                         <h3>I. KHỞI SINH </h3>
-                        <p>Có một thời, Nhịp Bước Đa Minh bắt đầu rất đơn giản chỉ là vài chương trình nhỏ, vài buổi
+                        <p class="text-justify">Có một thời, Nhịp Bước Đa Minh bắt đầu rất đơn giản chỉ là vài chương
+                            trình nhỏ, vài buổi
                             gặp gỡ khiêm tốn và một nhóm người trẻ chưa có nhiều điều trong tay ngoài thao thức và lòng
                             nhiệt thành.
                         </p>
-                        <p>
+                        <p class="text-justify">
                             Nhưng chính từ những điều nhỏ bé ấy, một nhịp bước đã được hình thành và lặng lẽ lớn lên qua
                             năm tháng
                         </p>
@@ -511,7 +582,8 @@
                     <div class="col-xl-6 col-lg-12">
                         <div class="team-block-one style-two mb_30">
                             <div class="about-content-four">
-                                <p>Sau hai mươi năm, Nhịp Bước Đa Minh không còn là câu chuyện của riêng ai, mà là một
+                                <p class="text-justify">Sau hai mươi năm, Nhịp Bước Đa Minh không còn là câu chuyện của
+                                    riêng ai, mà là một
                                     hành trình
                                     chung được tiếp nối bởi những người trẻ hôm nay. <br>
                                     Khép lại một chặng đường để mở ra chặng mới, Nhịp Bước Đa Minh vẫn tiếp tục lên
@@ -537,40 +609,36 @@
                     </div>
                     <div class="col-xl-6 col-lg-12">
                         <div class="row">
-                            <!-- Hàng 1: Ảnh nhỏ - Ảnh to -->
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-4 image-row-1">
+                            <!-- Cột trái: Ảnh 1 (nhỏ) + Ảnh 3 (to) -->
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-6">
                                 <div class="team-block-one style-three mb_30 image-small">
                                     <div class="team-image">
                                         <figure>
-                                            <img src="assets/images/resource/lich-su-8.jpeg" alt="">
+                                            <img src="assets/images/resource/lich-su-8.jpeg" alt="Ảnh 1">
                                         </figure>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-8 col-lg-8 col-md-8 col-8 image-row-1">
                                 <div class="team-block-one style-three mb_30 image-large">
                                     <div class="team-image">
                                         <figure>
-                                            <img src="assets/images/resource/lich-su-9.jpeg" alt="">
+                                            <img src="assets/images/resource/lich-su-10.jpeg" alt="Ảnh 3">
                                         </figure>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Hàng 2: Ảnh to - Ảnh nhỏ -->
-                            <div class="col-xl-8 col-lg-8 col-md-8 col-8 image-row-2">
+                            <!-- Cột phải: Ảnh 2 (to) + Ảnh 4 (nhỏ) -->
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-6">
                                 <div class="team-block-one style-three mb_30 image-large">
                                     <div class="team-image">
                                         <figure>
-                                            <img src="assets/images/resource/lich-su-10.jpeg" alt="">
+                                            <img src="assets/images/resource/lich-su-9.jpeg" alt="Ảnh 2">
                                         </figure>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-4 image-row-2 image-align-top">
                                 <div class="team-block-one style-three mb_30 image-small">
                                     <div class="team-image">
                                         <figure>
-                                            <img src="assets/images/resource/lich-su-11.jpeg" alt="">
+                                            <img src="assets/images/resource/lich-su-11.jpeg" alt="Ảnh 4">
                                         </figure>
                                     </div>
                                 </div>
@@ -586,7 +654,9 @@
         <div class="slide" style="background-image:url(assets/images/banner/banner-1.jpeg)">
             <div class="container">
                 <div class="section-title centred mb_60">
-                    <p>Xin chân thành cảm ơn vì đã hiện diện và đồng hành cùng Nhịp Bước Đa Minh trong suốt hành trình
+                    <p class="fw-bold fs-5">Xin chân thành cảm ơn vì đã hiện diện và đồng hành cùng Nhịp Bước Đa Minh
+                        trong
+                        suốt hành trình
                         hai mươi năm.</p>
                 </div>
             </div>
@@ -607,17 +677,19 @@
                 <div class="col-xl-6 col-lg-12">
 
                     <!-- Invitation Card -->
-                    <div class="feature-banner mb_30" style="background-image: url(images/feature/feature-banner.jpg);">
+                    <div class="feature-banner mb_30"
+                        style="background-image: url(assets/images/invitation/thiep-1.jpeg);">
                         <!-- <div class="quote"><i class="flaticon-quote-1"></i></div> -->
                         <div class="shape-quote"><i class="flaticon-quote-1"></i></div>
                         <div class="invitation-content">
                             <p class="invitation-intro">Nhân dịp kỷ niệm 20 năm hình thành và phát triển của<br>
                                 Nhóm Sinh Viên Nhịp Bước Đa Minh<br> Trân trọng kính mời</p>
                             <div class="invitation-guests">
-                                <p>Quý Cha, Quý Ân Nhân, Quý Anh Chị Cựu Thành Viên cùng tất cả các bạn đã, đang và sẽ
+                                <p class="text-center">Quý Cha, Quý Ân Nhân, Quý Anh Chị Cựu Thành Viên cùng tất cả các
+                                    bạn đã, đang và sẽ
                                     đồng hành với Nhóm</p>
                             </div>
-                            <p class="invitation-message">
+                            <p class="invitation-message text-center">
                                 Quý Cha, quý ân nhân, quý anh chị cựu thành viên
                                 cùng tất cả các bạn đã, đang và sẽ đồng hành với Nhóm <br>
 
@@ -659,24 +731,34 @@
                 </div>
                 <!-- Right Column: Invitation with Flip Effect -->
                 <div class="col-xl-6 col-lg-12">
-                    <div class="invitation-flip-container">
-                        <!-- Cover Image (Bottom Layer) -->
-                        <div class="invitation-cover-layer">
-                            <figure>
-                                <img src="assets/images/invitation/thiep-2.jpg" alt="Ảnh bìa thiệp mời">
-                            </figure>
-                        </div>
-                        <!-- Invitation Image (Top Layer - Clickable) -->
-                        <div class="invitation-top-layer" id="invitation-flip">
-                            <figure>
-                                <img src="assets/images/invitation/thiep-1.jpg" alt="Thiệp mời">
-                            </figure>
-                            <div class="flip-hint">
-                                <i class="fa-solid fa-envelope-open"></i>
-                                <span>Nhấp để mở thiệp</span>
+                    <div class="invitation-card-container">
+                        <input type="checkbox" id="open-invitation-card" />
+
+                        <!-- Card Cover (Thiệp 1) - Bìa ngoài -->
+                        <label for="open-invitation-card" class="invitation-card-cover">
+                            <div class="invitation-card-cover-inner">
+                                <div class="invitation-card-cover-front">
+                                    <img src="assets/images/invitation/thiep-2.jpeg" alt="Thiệp 1">
+                                </div>
+                                <div class="invitation-card-cover-back" style="background-color: brown;">
+                                    <div class="invitation-card-hint">Mở thiệp để xem nội dung <i
+                                            class="fa-solid fa-arrow-right"></i></div>
+                                </div>
+                            </div>
+                        </label>
+
+                        <!-- Inner Pages - Ảnh 2 và 3 nằm cạnh nhau -->
+                        <div class="invitation-inner-pages">
+                            <div class="invitation-page invitation-page-left">
+                                <img src="assets/images/invitation/thiep-1.jpeg" alt="Thiệp 2">
+                            </div>
+                            <div class="invitation-page invitation-page-right">
+                                <img src="assets/images/invitation/thiep-3.jpeg" alt="Thiệp 3">
                             </div>
                         </div>
                     </div>
+
+                    <button class="invitation-card-button attendance-popup-trigger mb_30">Xác nhận tham dự</button>
                 </div>
             </div>
         </div>
@@ -710,7 +792,7 @@
                                 </div>
                                 <div class="tab-content">
                                     <h3>Năng động</h3>
-                                    <p class="bold-text">
+                                    <p class="bold-text text-justify">
                                         "Năng động không chỉ là hoạt động bề ngoài, mà là sự chủ động
                                         nuôi dưỡng đời sống nội tâm, biết tìm kiếm ý nghĩa, biết trăn trở trước thực
                                         trạng xã hội và sẵn sàng lớn lên mỗi ngày trong trách nhiệm."
@@ -727,12 +809,10 @@
                                 </div>
                                 <div class="tab-content">
                                     <h3>Liên đới</h3>
-                                    <p class="bold-text">
-                                        "Liên đới là biết bước đi cùng nhau, biết lắng nghe, cảm thông
-                                        và chia sẻ. Đó là tinh thần xây dựng tình bạn chân thành trong nhóm, là sự mở
-                                        lòng với những người yếu thế, và là chọn không sống cho riêng mình, nhưng gắn
-                                        kết đời sống cá nhân với cộng đồng và xã hội."
-                                    </p>
+                                    <p class="bold-text text-justify"> "Liên đới là biết bước đi cùng nhau, biết lắng
+                                        nghe, cảm thông và chia sẻ. Đó là tinh thần xây dựng tình bạn chân thành trong
+                                        nhóm, là sự mở lòng với những người yếu thế, và là chọn không sống cho riêng
+                                        mình, nhưng gắn kết đời sống cá nhân với cộng đồng và xã hội." </p>
                                 </div>
                             </div>
                         </div>
@@ -745,7 +825,7 @@
                                 </div>
                                 <div class="tab-content">
                                     <h3>Dấn thân</h3>
-                                    <p class="bold-text">
+                                    <p class="bold-text text-justify">
                                         "Biến lý tưởng và đức tin thành hành động cụ thể,
                                         đem những gì đã học hỏi và cầu nguyện đi vào đời sống thực tế,
                                         phục vụ, yêu thương và làm chứng cho Tin Mừng giữa môi trường học tập và xã hội
@@ -931,9 +1011,10 @@
     <section id="truong-nhom" class="linh-huong-section sec-padding-150"></section>
     <div class="container">
         <div class="section-title centred mb_60">
-            <h1>Trưởng nhóm</h1>
-            <p>Trưởng nhóm là người đầu tiên đến với Nhịp Bước Đa Minh và đã đồng hành cùng Nhịp Bước Đa Minh trong suốt
-                hành trình hai mươi năm.</p>
+            <h1> TRƯỞNG NHÓM QUA CÁC THỜI KỲ</h1>
+            <p>Nhịp Bước Đa Minh đã được dẫn dắt bởi những người trẻ dám nhận trách nhiệm, dám đứng mũi chịu sào và âm
+                thầm phục vụ cho nhóm. Mỗi trưởng nhóm là một dấu ấn của thời gian, mang theo nhiệt huyết và tình yêu
+                dành cho nhóm.</p>
         </div>
         <div class="row">
 

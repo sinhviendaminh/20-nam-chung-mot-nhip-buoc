@@ -1,0 +1,154 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  perspective: 1500px;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  position: relative;
+  width: 800px;
+  height: 600px;
+  transform-style: preserve-3d;
+}
+
+input[type="checkbox"] {
+  display: none;
+}
+
+/* Card Cover (Thiệp 1) - Bìa ngoài */
+.card-cover {
+  position: absolute;
+  width: 400px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.card-cover-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform-origin: right center;
+  transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.card-cover-front,
+.card-cover-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+}
+
+.card-cover-front {
+  transform: rotateY(0deg);
+}
+
+.card-cover-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.card-cover-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* Mở bìa khi checkbox được check */
+#open-card:checked ~ .card-cover .card-cover-inner {
+  transform: rotateY(-180deg);
+}
+
+/* Inner Pages - Container chứa ảnh 2 và 3 */
+.inner-pages {
+  position: absolute;
+  width: 800px;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  z-index: 1;
+}
+
+/* Các trang bên trong */
+.page {
+  width: 400px;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.page-left {
+}
+
+.page-right {
+}
+
+.page img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Hover effect */
+.card-cover:hover .card-cover-inner {
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .container {
+    width: 600px;
+    height: 450px;
+  }
+
+  .card-cover {
+    width: 300px;
+  }
+
+  .inner-pages {
+    width: 600px;
+  }
+
+  .page {
+    width: 300px;
+  }
+}
+
+@media (max-width: 650px) {
+  .container {
+    width: 500px;
+    height: 375px;
+  }
+
+  .card-cover {
+    width: 250px;
+  }
+
+  .inner-pages {
+    width: 500px;
+  }
+
+  .page {
+    width: 250px;
+  }
+}

@@ -1368,3 +1368,124 @@
   }
 }
 /** End Circular Portrait Block Responsive **/
+
+/** Fix padding and image size for circular portraits section on mobile **/
+@media (max-width: 767px) {
+  /* Target the column containing circular portraits in linh-huong section */
+  #linh-huong .col-xl-6.col-lg-6.col-md-6.col-12 {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  #linh-huong .col-xl-6.col-lg-6.col-md-6.col-12 > .row {
+    padding-right: 0;
+    margin-right: 0;
+  }
+
+  /* Reduce image size on mobile */
+  #linh-huong .circular-portrait-block .portrait-image {
+    width: 150px !important;
+    height: 150px !important;
+  }
+}
+
+@media (max-width: 575px) {
+  /* Target the column containing circular portraits in linh-huong section */
+  #linh-huong .col-xl-6.col-lg-6.col-md-6.col-12 {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  #linh-huong .col-xl-6.col-lg-6.col-md-6.col-12 > .row {
+    padding-right: 0;
+    margin-right: 0;
+  }
+
+  /* Further reduce image size on smaller mobile */
+  #linh-huong .circular-portrait-block .portrait-image {
+    width: 120px !important;
+    height: 120px !important;
+  }
+}
+/** Image max-height responsive - 150px for all screens with 16:9 ratio **/
+@media (max-width: 1199px) {
+  .team-block-one.style-three.image-small .team-image {
+    max-height: 75px;
+    max-width: 133.33px; /* 75 * 16/9 */
+    width: auto;
+    margin: 0 auto;
+  }
+  .team-block-one.style-three.image-small .team-image::before {
+    max-height: 75px;
+  }
+  .team-block-one.style-three.image-large .team-image {
+    max-height: 150px;
+    max-width: 266.67px; /* 150 * 16/9 */
+    width: auto;
+    margin: 0 auto;
+  }
+  .team-block-one.style-three.image-large .team-image::before {
+    max-height: 150px;
+  }
+}
+@media (max-width: 991px) {
+  .team-block-one.style-three.image-small .team-image {
+    max-height: 75px;
+    max-width: 133.33px; /* 75 * 16/9 */
+    width: auto;
+    margin: 0 auto;
+  }
+  .team-block-one.style-three.image-small .team-image::before {
+    max-height: 75px;
+  }
+  .team-block-one.style-three.image-large .team-image {
+    max-height: 150px;
+    max-width: 266.67px; /* 150 * 16/9 */
+    width: auto;
+    margin: 0 auto;
+  }
+  .team-block-one.style-three.image-large .team-image::before {
+    max-height: 150px;
+  }
+}
+@media (max-width: 767px) {
+  .team-block-one.style-three.image-small .team-image {
+    max-height: 75px;
+    max-width: 133.33px; /* 75 * 16/9 */
+    width: auto;
+    margin: 0 auto;
+  }
+  .team-block-one.style-three.image-small .team-image::before {
+    max-height: 75px;
+  }
+  .team-block-one.style-three.image-large .team-image {
+    max-height: 150px;
+    max-width: 266.67px; /* 150 * 16/9 */
+    width: auto;
+    margin: 0 auto;
+  }
+  .team-block-one.style-three.image-large .team-image::before {
+    max-height: 150px;
+  }
+}
+@media (max-width: 575px) {
+  .team-block-one.style-three.image-small .team-image {
+    max-height: 75px;
+    max-width: 133.33px; /* 75 * 16/9 */
+    width: auto;
+    margin: 0 auto;
+  }
+  .team-block-one.style-three.image-small .team-image::before {
+    max-height: 75px;
+  }
+  .team-block-one.style-three.image-large .team-image {
+    max-height: 150px;
+    max-width: 266.67px; /* 150 * 16/9 */
+    width: auto;
+    margin: 0 auto;
+  }
+  .team-block-one.style-three.image-large .team-image::before {
+    max-height: 150px;
+  }
+}
+/** End Image max-height responsive **/

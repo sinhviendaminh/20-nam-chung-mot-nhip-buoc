@@ -974,8 +974,145 @@
     });
   }
 
+  // Attendance Popup Handler
+  function initAttendancePopup() {
+    var attendancePopup = $("#attendance-popup");
+    var attendanceForm = $("#attendance-form");
+    var attendanceSuccess = $("#attendance-success");
+
+    // Open popup
+    $(".attendance-popup-trigger").on("click", function (e) {
+      e.preventDefault();
+      attendancePopup.addClass("popup-visible");
+      $("body").css("overflow", "hidden");
+    });
+
+    // Close popup
+    $(".attendance-popup-close, #attendance-popup .wish-popup-backdrop").on("click", function () {
+      attendancePopup.removeClass("popup-visible");
+      $("body").css("overflow", "");
+      // Reset form after closing
+      setTimeout(function () {
+        attendanceForm[0].reset();
+        attendanceForm.show();
+        attendanceSuccess.hide();
+        $(".status-button").removeClass("active");
+        $("#attendance-status").val("");
+        var submitBtn = attendanceForm.find('button[type="submit"]');
+        submitBtn
+          .prop("disabled", false)
+          .removeClass("loading")
+          .html('Xác nhận tham dự <i class="fa-solid fa-check"></i>');
+      }, 300);
+    });
+
+    // Close on ESC key
+    $(document).keydown(function (e) {
+      if (e.keyCode === 27 && attendancePopup.hasClass("popup-visible")) {
+        attendancePopup.removeClass("popup-visible");
+        $("body").css("overflow", "");
+        setTimeout(function () {
+          attendanceForm[0].reset();
+          attendanceForm.show();
+          attendanceSuccess.hide();
+          $(".status-button").removeClass("active");
+          $("#attendance-status").val("");
+          var submitBtn = attendanceForm.find('button[type="submit"]');
+          submitBtn
+            .prop("disabled", false)
+            .removeClass("loading")
+            .html('Xác nhận tham dự <i class="fa-solid fa-check"></i>');
+        }, 300);
+      }
+    });
+
+    // Handle status button selection
+    $(".status-button").on("click", function () {
+      // Remove active class from all buttons
+      $(".status-button").removeClass("active");
+      
+      // Add active class to clicked button
+      $(this).addClass("active");
+      
+      // Update hidden input with selected status
+      var status = $(this).data("status");
+      $("#attendance-status").val(status);
+    });
+
+    // Handle form submission
+    attendanceForm.on("submit", function (e) {
+      e.preventDefault();
+      
+      // Validate status selection
+      var selectedStatus = $("#attendance-status").val();
+      if (!selectedStatus) {
+        alert("Vui lòng chọn trạng thái tham dự!");
+        return;
+      }
+      
+      var submitBtn = attendanceForm.find('button[type="submit"]');
+      var formData = {
+        name: $("#attendance-name").val(),
+        birthYear: $("#attendance-birth-year").val(),
+        status: selectedStatus,
+        note: $("#attendance-note").val(),
+        timestamp: new Date().toLocaleString("vi-VN", { timeZone: "Asia/Ho_Chi_Minh" }),
+        url: window.location.href,
+      };
+
+      // Disable button and show loading
+      submitBtn.prop("disabled", true).addClass("loading");
+      submitBtn.html('<i class="fa-solid fa-spinner fa-spin"></i> Đang gửi...');
+
+      // TODO: Replace with your Google Apps Script URL for attendance
+      var scriptURL = "YOUR_ATTENDANCE_GOOGLE_APPS_SCRIPT_URL_HERE";
+
+      $.ajax({
+        url: scriptURL,
+        method: "POST",
+        dataType: "json",
+        data: formData,
+        success: function (response) {
+          if (response.success) {
+            attendanceForm.hide();
+            attendanceSuccess.fadeIn();
+            setTimeout(function () {
+              attendancePopup.removeClass("popup-visible");
+              $("body").css("overflow", "");
+              setTimeout(function () {
+                attendanceForm[0].reset();
+                attendanceForm.show();
+                attendanceSuccess.hide();
+                $(".status-button").removeClass("active");
+                $("#attendance-status").val("");
+                submitBtn
+                  .prop("disabled", false)
+                  .removeClass("loading")
+                  .html('Xác nhận tham dự <i class="fa-solid fa-check"></i>');
+              }, 300);
+            }, 2000);
+          } else {
+            alert(response.error || "Có lỗi xảy ra. Vui lòng thử lại!");
+            submitBtn
+              .prop("disabled", false)
+              .removeClass("loading")
+              .html('Xác nhận tham dự <i class="fa-solid fa-check"></i>');
+          }
+        },
+        error: function () {
+          alert("Có lỗi xảy ra khi gửi xác nhận. Vui lòng thử lại sau hoặc liên hệ với chúng tôi!");
+          submitBtn
+            .prop("disabled", false)
+            .removeClass("loading")
+            .html('Xác nhận tham dự <i class="fa-solid fa-check"></i>');
+        },
+      });
+    });
+  }
+
   $(document).ready(function () {
     initWishPopup();
+    initAttendancePopup();
   });
 
   // Background Music Toggle

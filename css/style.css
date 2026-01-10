@@ -469,6 +469,182 @@ html {
   background: rgba(0, 0, 0, 0.8);
 }
 
+/* Invitation Card Open Effect (from OpenBook) */
+.invitation-card-container {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  height: 600px;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+  perspective: 1500px;
+}
+
+.invitation-card-container input[type="checkbox"] {
+  display: none;
+}
+
+/* Card Cover (Thiệp 1) - Bìa ngoài */
+.invitation-card-cover {
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.invitation-card-cover-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform-origin: right center;
+  transition: transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+.invitation-card-cover-front,
+.invitation-card-cover-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  /* box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3); */
+  overflow: hidden;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.invitation-card-cover-front {
+  transform: rotateY(0deg);
+}
+
+.invitation-card-cover-front img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+.invitation-card-cover-back {
+  transform: rotateY(180deg);
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+/* Mở bìa khi checkbox được check */
+#open-invitation-card:checked
+  ~ .invitation-card-cover
+  .invitation-card-cover-inner {
+  transform: rotateY(-180deg);
+}
+
+/* Inner Pages - Container chứa ảnh 2 và 3 */
+.invitation-inner-pages {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  display: flex;
+  z-index: 1;
+}
+
+/* Các trang bên trong */
+.invitation-page {
+  width: 50%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.invitation-page img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+/* Hover effect */
+.invitation-card-cover:hover .invitation-card-cover-inner {
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* Invitation Card Button */
+.invitation-card-button {
+  margin-top: 20px;
+  padding: 12px 30px;
+  background: var(--primary-color);
+  color: var(--white-color);
+  border: none;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--montserrat);
+}
+
+.invitation-card-button:hover {
+  background: var(--secondary-color);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive for invitation card */
+@media (max-width: 1200px) {
+  .invitation-card-container {
+    height: 500px;
+  }
+}
+
+@media (max-width: 900px) {
+  .invitation-card-container {
+    height: 450px;
+  }
+}
+
+@media (max-width: 768px) {
+  .invitation-card-container {
+    height: 400px;
+  }
+
+  /* Center button on mobile/tablet */
+  .invitation-card-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 650px) {
+  .invitation-card-container {
+    height: 350px;
+  }
+
+  /* Center button on mobile */
+  .invitation-card-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
 /* Feature Block One */
 .feature-block-one {
   position: relative;
@@ -808,6 +984,13 @@ html {
 .tabs-content .tab-box .tab-content .bold-text {
   font-weight: 600;
   margin-bottom: 10px;
+}
+/** Text justify class for text alignment **/
+.text-justify {
+  text-align: justify !important;
+}
+.tabs-content .tab-box .tab-content .text-justify {
+  text-align: justify !important;
 }
 .tabs-content .tab-box .tab-content .link-btn {
   position: absolute;
@@ -1939,18 +2122,60 @@ html {
 .team-block-one.style-three.image-small .team-image,
 .team-block-one.style-three.image-large .team-image {
   position: relative;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   overflow: hidden;
+  margin: 0 auto;
+}
+/** Allow mb_30 to work for spacing between images **/
+.col-xl-6 > .row > .col-xl-6 .team-block-one.style-three .team-image {
+  margin-bottom: 0;
+}
+/** Reduce gap between two columns **/
+.col-xl-6 > .row > .col-xl-6 {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+.col-xl-6 > .row {
+  margin-left: -5px;
+  margin-right: -5px;
+}
+/** Align images: Ảnh 1,3 (cột trái) align right, Ảnh 2,4 (cột phải) align left **/
+.col-xl-6
+  > .row
+  > .col-xl-6:first-child
+  .team-block-one.style-three
+  .team-image {
+  margin-left: auto;
+  margin-right: 0;
+}
+.col-xl-6
+  > .row
+  > .col-xl-6:last-child
+  .team-block-one.style-three
+  .team-image {
+  margin-left: 0;
+  margin-right: auto;
+}
+.team-block-one.style-three.image-small .team-image {
+  max-height: 75px; /* Half of large image (150px / 2) */
+  max-width: 133.33px; /* 75 * 16/9 */
 }
 .team-block-one.style-three.image-small .team-image::before {
   content: "";
   display: block;
   padding-top: 56.25%; /* 16:9 aspect ratio */
+  max-height: 75px;
+}
+.team-block-one.style-three.image-large .team-image {
+  max-height: 150px; /* Desktop max height */
+  max-width: 266.67px; /* 150 * 16/9 */
 }
 .team-block-one.style-three.image-large .team-image::before {
   content: "";
   display: block;
   padding-top: 56.25%; /* 16:9 aspect ratio */
+  max-height: 150px;
 }
 .team-block-one.style-three.image-small .team-image figure,
 .team-block-one.style-three.image-large .team-image figure {
@@ -1967,20 +2192,6 @@ html {
   height: 100%;
   object-fit: cover;
   border-radius: 12px;
-}
-/** Align images in same row to bottom **/
-.row > .image-row-1,
-.row > .image-row-2 {
-  display: flex;
-  align-items: flex-end;
-}
-.row > .image-row-1 .team-block-one,
-.row > .image-row-2 .team-block-one {
-  width: 100%;
-}
-/** Ảnh 4 căn top như cũ **/
-.row > .image-align-top {
-  align-items: flex-start !important;
 }
 /** End Team Block Style Three **/
 
@@ -4618,4 +4829,84 @@ html {
 
 .form-actions .button-style-three.loading i.fa-spinner {
   animation: wishButtonSpinner 1s linear infinite;
+}
+
+/* Attendance Status Buttons */
+.attendance-status-buttons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+  flex-wrap: nowrap;
+}
+
+.status-button {
+  flex: 1;
+  padding: 15px 20px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--montserrat);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--paragraph-color);
+}
+
+.status-button:hover {
+  border-color: var(--primary-color);
+  background: rgba(152, 2, 12, 0.05);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.status-button.active {
+  border-color: var(--primary-color);
+  background: var(--primary-color);
+  color: var(--white-color);
+  box-shadow: 0 4px 12px rgba(152, 2, 12, 0.3);
+}
+
+.status-button img {
+  width: 50px;
+  height: 50px;
+  transition: transform 0.3s ease;
+}
+
+.status-button:hover img {
+  transform: scale(1.1);
+}
+
+.status-button.active img {
+  filter: brightness(0) invert(1);
+}
+
+.status-button span {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+@media (max-width: 575px) {
+  .attendance-status-buttons {
+    gap: 10px;
+  }
+
+  .status-button {
+    padding: 12px 15px;
+    font-size: 12px;
+  }
+
+  .status-button img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .status-button span {
+    font-size: 11px;
+  }
 }
