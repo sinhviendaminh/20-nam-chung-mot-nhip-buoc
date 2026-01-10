@@ -934,7 +934,7 @@
         );
 
         var scriptURL =
-          "https://script.google.com/macros/s/AKfycbz_I_rVX6apycf2PCc8vSvzd3fgL9lCgJDm3YHKdLi6sLuFQ5Y7PQngJyuShZmOAjAamw/exec";
+          "https://script.google.com/macros/s/AKfycbyTmTQD1Gwzu7ND8aMWJZsGkmIgus5OtS9TRMDKEL7uypCHvw4GDBRgsjq7Knri2t6thQ/exec";
 
         $.ajax({
           url: scriptURL,
@@ -1076,7 +1076,7 @@
       // Sử dụng cùng Google Apps Script URL như wish form
       // Script sẽ tự động phân biệt loại request dựa trên dữ liệu
       var scriptURL =
-        "https://script.google.com/macros/s/AKfycbz_I_rVX6apycf2PCc8vSvzd3fgL9lCgJDm3YHKdLi6sLuFQ5Y7PQngJyuShZmOAjAamw/exec";
+        "https://script.google.com/macros/s/AKfycbyTmTQD1Gwzu7ND8aMWJZsGkmIgus5OtS9TRMDKEL7uypCHvw4GDBRgsjq7Knri2t6thQ/exec";
 
       $.ajax({
         url: scriptURL,
