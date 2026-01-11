@@ -2640,6 +2640,12 @@ html {
 .linh-huong-section .section-title p {
   color: var(--paragraph-color);
 }
+.portrait-label {
+  font-size: 0.85em;
+  margin-bottom: 8px;
+  color: var(--paragraph-color);
+  opacity: 0.8;
+}
 /** End Linh Huong Section **/
 .about-content-four {
   margin-top: 30px;
