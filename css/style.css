@@ -2640,6 +2640,43 @@ html {
 .linh-huong-section .section-title p {
   color: var(--paragraph-color);
 }
+/* Đảm bảo hai cột có cùng chiều cao trên desktop */
+@media (min-width: 1200px) {
+  .linh-huong-section .row:not(.companion-row) {
+    display: flex;
+    align-items: stretch;
+  }
+  .linh-huong-section .row:not(.companion-row) > [class*="col-xl-6"] {
+    display: flex;
+    flex-direction: column;
+  }
+}
+/* Điều chỉnh thứ tự hiển thị trên mobile - companion-row hiển thị dưới cột trái */
+@media (max-width: 991.98px) {
+  .linh-huong-section .container > .row:not(.companion-row) {
+    display: flex;
+    flex-direction: column;
+  }
+  .linh-huong-section
+    .container
+    > .row:not(.companion-row)
+    > .col-xl-6:first-child {
+    order: 1;
+  }
+  .linh-huong-section .companion-row {
+    order: 2;
+  }
+  .linh-huong-section
+    .container
+    > .row:not(.companion-row)
+    > .col-xl-6:last-child {
+    order: 3;
+  }
+  .linh-huong-section .container {
+    display: flex;
+    flex-direction: column;
+  }
+}
 .portrait-label {
   font-size: 0.85em;
   margin-bottom: 8px;
@@ -3349,16 +3386,25 @@ html {
 /** Linh Huong Section **/
 .main-portrait-image {
   margin-bottom: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 .main-portrait-image .image {
   border-radius: 10px;
   overflow: hidden;
   background-color: var(--white-color);
   border: 1px solid rgba(0, 0, 0, 0.1);
+  flex: 1;
+  display: flex;
+  min-height: 0;
+  aspect-ratio: 1;
 }
 .main-portrait-image img {
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 .portrait-caption {
