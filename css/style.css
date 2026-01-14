@@ -2623,6 +2623,38 @@ html {
   position: relative;
   z-index: 2;
 }
+#cam-on-ban.about-section-four {
+  padding: 50px 0;
+  overflow: hidden;
+}
+#cam-on-ban.about-section-four > div {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+.about-section-four video {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 70vh;
+  display: block;
+  margin: 0 auto;
+  border-radius: 10px;
+  object-fit: contain;
+}
+@media (max-width: 768px) {
+  #cam-on-ban.about-section-four {
+    padding: 30px 0;
+  }
+  .about-section-four video {
+    max-height: 60vh;
+  }
+}
+@media (max-width: 480px) {
+  .about-section-four video {
+    max-height: 50vh;
+  }
+}
 .about-section-four .slide .section-title h1 {
   color: var(--white-color);
 }
