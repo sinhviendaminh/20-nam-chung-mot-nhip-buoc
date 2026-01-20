@@ -1136,9 +1136,14 @@
   function initBackgroundMusic() {
     var music = document.getElementById("background-music");
     var musicToggle = document.getElementById("music-toggle");
-    var musicIcon = document.getElementById("music-icon");
     var musicSlash = document.getElementById("music-slash");
-    var isPlaying = false;
+    
+    if (!music || !musicToggle) {
+      return;
+    }
+
+    // Ensure audio is loaded
+    music.load();
 
     // Load saved music state from localStorage
     var savedState = localStorage.getItem("backgroundMusicState");
@@ -1146,49 +1151,43 @@
       music.play().catch(function (error) {
         console.log("Auto-play prevented:", error);
       });
-      isPlaying = true;
       musicToggle.classList.add("music-playing");
       if (musicSlash) {
         musicSlash.style.display = "none";
       }
     } else {
-      // Show slash icon when music is paused
       if (musicSlash) {
         musicSlash.style.display = "block";
       }
     }
 
     // Toggle music on button click
-    if (musicToggle) {
-      musicToggle.addEventListener("click", function (e) {
-        e.preventDefault();
-        e.stopPropagation();
+    musicToggle.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
 
-        if (isPlaying) {
-          music.pause();
-          isPlaying = false;
-          musicToggle.classList.remove("music-playing");
-          if (musicSlash) {
-            musicSlash.style.display = "block";
-          }
-          localStorage.setItem("backgroundMusicState", "paused");
-        } else {
-          music
-            .play()
-            .then(function () {
-              isPlaying = true;
-              musicToggle.classList.add("music-playing");
-              if (musicSlash) {
-                musicSlash.style.display = "none";
-              }
-              localStorage.setItem("backgroundMusicState", "playing");
-            })
-            .catch(function (error) {
-              console.log("Play failed:", error);
-            });
+      // Check actual audio state
+      if (!music.paused) {
+        music.pause();
+        musicToggle.classList.remove("music-playing");
+        if (musicSlash) {
+          musicSlash.style.display = "block";
         }
-      });
-    }
+        localStorage.setItem("backgroundMusicState", "paused");
+      } else {
+        music.play()
+          .then(function () {
+            musicToggle.classList.add("music-playing");
+            if (musicSlash) {
+              musicSlash.style.display = "none";
+            }
+            localStorage.setItem("backgroundMusicState", "playing");
+          })
+          .catch(function (error) {
+            console.log("Play failed:", error);
+          });
+      }
+    });
   }
 
   // Initialize background music
